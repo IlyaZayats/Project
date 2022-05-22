@@ -344,24 +344,3 @@ body {
   .slider::-moz-range-thumb {
       cursor: pointer;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  footer {
-    position: absolute;
-    background-color: #333;
-    color: white;
-    font-weight: bold;
-    font-size: 32px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    margin: 65% 0 0 0;
-  }
