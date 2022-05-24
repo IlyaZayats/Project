@@ -11,11 +11,165 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/project_css.css">
-    <link rel="stylesheet" href="css/style_nastya.css"/>
+    <link rel="stylesheet" href="css/calculator.css">
     <title>Tiunoff Bank</title>
 </head>
+    <!-- Modal -->
+    <div class="modal fade" id="calculatorModal" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="calculatorModalLabel">Калькулятор кредитов</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body calulator-form-wrapper container-lg">
+              <div class="row">
+              <form class="needs-validation col-12 col-lg-8" id="credit-calculation" novalidate>
+                <div class="calculator-type-select col-12 mb-3">
+                  <label for="credit-type-selector" class="form-label"> 
+                    Выбор типа услуги: 
+                  </label>
+                  <select class="form-select" id="credit-type-selector" name="credit-type" required>
+                    <option selected value="credit-card">Кредитная карта</option>
+                    <option selected value="credit-cash">Кредит наличными</option>
+                    <option selected value="credit-dream">"На исполнение мечты"</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Произошла ошибка выбора типа.
+                  </div>
+                </div>
+                <div class="calculator-credit-card-block calculator-credit-block caluclator-active col-12">
+                    <div>
+                      <h5>Кредитная карта на сумму:</h5>
+                    </div>
+                    <div class="d-flex credit-card-amount flex-column flex-md-row justify-content-md-center align-items-md-center">
+                      <div class="form-check calc-types w-100 text-md-center">
+                        <input class="form-check-input" name="credit-card-sum" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="50000" checked required>
+                        <label class="form-check-label text-center" for="flexRadioDefault1">
+                          50,000
+                        </label>
+                      </div>
+                      <div class="form-check calc-types w-100 text-md-center">
+                        <input class="form-check-input" name="credit-card-sum" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="100000" required>
+                        <label class="form-check-label text-center" for="flexRadioDefault2">
+                          100,000
+                        </label>
+                      </div>
+                      <div class="form-check calc-types w-100 text-md-center">
+                        <input class="form-check-input" name="credit-card-sum" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="200000" required>
+                        <label class="form-check-label text-center" for="flexRadioDefault3">
+                          200,000
+                        </label>
+                      </div>
+                      <div class="invalid-feedback">
+                        Произошла ошибка выбора суммы.
+                      </div>
+                    </div>
+                    <div class="mt-5 credit-card-text mb-5">
+                      <p> Без процентной ставки на покупки, совершенные за первые 30 дней. С 31-ого дня будет действовать беспроцент на 30 дней </p>
+                    </div>   
+                </div>
+                <div class="calculator-credit-cash-block calculator-credit-block calculator-inactive col-12 mt-3">
+                  <h5>Калькулятор:</h5>
+                  <div class="calculator-credit-amount calculator-input-group">
+                  <label for="validation-credit-cash-am" class="form-label">Желаемая сумма кредита</label>
+                    <div class="input-group">
+                      <input type="number" name="credit-cash-sum" class="form-control calculator-numeric-fields" id="validation-credit-cash-am" min="50000" max="1000000" value="50000" required>
+                      <span class="input-group-text">₽</span>
+                      <div class="valid-feedback">
+                        Выбрано четко!
+                      </div>
+                      <div class="invalid-feedback">
+                        Чел,ты... кредит от 50к до 1кк...
+                      </div>
+                    </div>
+                    <label for="credit-cash-range-am" class="form-label"></label>
+                    <input type="range" class="form-range calculator-ranges calculator-amount-ranges" id="credit-cash-range-am" min="50000" max="1000000" step="10000" value="50000">
+                  </div>
+                  <div class="calculator-credit-period calculator-input-group">
+                    <label for="validation-credit-cash-per" class="form-label">Желаемый срок кредита</label>
+                    <div class="input-group">
+                      <input type="number" name="credit-cash-per" class="form-control calculator-numeric-fields" id="validation-credit-cash-per" min="12" max="48" value="12" required>
+                      <span class="input-group-text">мес.</span>
+                      <div class="valid-feedback">
+                        Выбрано четко!
+                      </div>
+                      <div class="invalid-feedback">
+                        Чел,ты... период с 12 до 48 месяцев...
+                      </div>
+                    </div>
+                    <label for="credit-cash-range-per" class="form-label"></label>
+                    <input type="range" class="form-range calculator-ranges calculator-period-ranges" id="credit-cash-range-per" min="12" max="48" step="1" value="12">
+                    <div class="col-12 col-sm-6">
+                      <h5> Ежемесячная плата: </h5>
+                      <div class="calculator-monthly-pay input-group">
+                        <input class="calculator-monthly form-control" disabled>
+                        <span class="input-group-text">₽</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="calculator-credit-dream-block calculator-credit-block calculator-inactive col-12 mt-3">
+                  <h5>Калькулятор:</h5>
+                  <div class="calculator-credit-amount calculator-input-group">
+                    <label for="validation-credit-dream-am" class="form-label">Желаемая сумма кредита</label>
+                    <div class="input-group">
+                      <input type="number" name="credit-dream-sum" class="form-control calculator-numeric-fields" 
+                      id="validation-credit-dream-am" min="1000000" max="10000000" value="1000000" required>
+                      <span class="input-group-text">₽</span>
+                      <div class="valid-feedback">
+                        Выбрано четко!
+                      </div>
+                      <div class="invalid-feedback">
+                        Чел,ты... кредит от 1кк до 10кк...
+                      </div>
+                    </div>
+                    <label for="credit-dream-range-am" class="form-label"></label>
+                    <input type="range" class="form-range calculator-ranges calculator-amount-ranges" id="credit-dream-range-am" min="1000000" max="10000000" step="100000" value="1000000">
+                  </div>
+                  <div class="calculator-credit-period calculator-input-group">
+                    <label for="validation-credit-dream-per" class="form-label">Желаемый срок кредита</label>
+                    <div class="input-group">
+                      <input type="number" name="credit-dream-per" class="form-control calculator-numeric-fields" id="validation-credit-dream-per" min="60" max="180" value="60" required>
+                      <span class="input-group-text">мес.</span>
+                      <div class="valid-feedback">
+                        Выбрано четко!
+                      </div>
+                      <div class="invalid-feedback">
+                        Чел,ты... период с 60 до 180 месяцев...
+                      </div>
+                    </div>
+                    <label for="credit-dream-range-per" class="form-label"></label>
+                    <input type="range" class="form-range calculator-ranges calculator-period-ranges" id="credit-dream-range-per" min="60" max="180" step="1" value="60">
+                    <div class="col-12 col-sm-6">
+                      <h5> Ежемесячная плата: </h5>
+                      <div class="calculator-monthly-pay input-group">
+                        <input class="calculator-monthly form-control" disabled>
+                        <span class="input-group-text">₽</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="col-md-4 d-lg-flex justify-content-center align-items-right d-none calculator-bank-img mr-0 pr-0">
+                <div class="container">
+                  <div class="row">
+                    <img src="img/tiunoff-crop.png" class="d-block mb-2 img-fluid pr-0 mr-0" width="308px" height="270px" alt="bank-logo">
+                  </div>
+                  <div class="row">
+                    <img src="img/card-credit-crop.png" class="d-block mt-2 img-fluid pr-0 mr-0" width="575px" height="414px" alt="bank-card">
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center align-items-center mt-3 mb-4">
+                <button form="credit-calculation" class="btn btn-calculator-send btn-lg" type="submit">Отправить заявку</button>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
 <body>
-
     <nav class="navbar navbar-expand-lg" style="background-color: black;"></nav>
   
     <div class="p-3 mb-2 bg-dark">
@@ -27,7 +181,7 @@
         <a class="nav-link text-white" href="#">Виды кредитов</a>
       </li>
       <li class="nav-item col-md-auto">
-        <a class="nav-link text-white" href="#">Рассчитать кредит</a>
+        <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#calculatorModal">Рассчитать кредит</a>
       </li>
       <li class="nav-item col-12 col-md-1">
         <a class="nav-link text-white" href="#">FAQ</a>
@@ -43,7 +197,7 @@
         <h1>Лучшие кредитные предложения в Краснодаре!<h1>
         <a href="#oznakomlenie" class="button">Ознакомиться</a>
       </div>
-      <div><img src="img/image1.jpg" /></div>
+      <div><img src="img/image1.jpg" class="img-fluid" /></div>
     </div>   
     <div class="l2">
       <div class="logo2">
@@ -58,11 +212,11 @@
     </div>
         
 
-    <div class="modal fade" id="modal_1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_1" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Вход</h5>
+              <h5 class="modal-title" id="calculatorModalLabel">Вход</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -89,11 +243,11 @@
         </div>
       </div>
       
-      <div class="modal fade" id="modal_2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="modal_2" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
+              <h5 class="modal-title" id="calculatorModalLabel">Регистрация</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -284,7 +438,7 @@
                           Кэшбэк действует абсолютно для любой суммы — даже если потратили 100 ₽!</p>
                           <div class="product-bottom-details d-flex justify-content-between">
                               <div class="product-url">
-                                  <button type="button" class="btn btn-outline-danger">Начать пользоваться</button>
+                                  <button type="button" class="btn btn-outline-danger btn-calculator-toggle" name="btn-credit-card-toggle" data-bs-toggle="modal" data-bs-target="#calculatorModal">Начать пользоваться</button>
                               </div>
                               <div class="product-links">
                                   <a href="#"><i class="fas fa-shopping-cart"></i></a>
@@ -308,7 +462,7 @@
                               Возрастные ограничения 18-60 лет. Получите решение по заявке за 1 час, с минимальным количеством документов!</p>
                           <div class="product-bottom-details d-flex justify-content-between">
                               <div class="product-url">
-                                  <button type="button" class="btn btn-outline-danger">Оформить сейчас</button>
+                                  <button type="button" class="btn btn-outline-danger btn-calculator-toggle" name="btn-credit-cash-toggle" data-bs-toggle="modal" data-bs-target="#calculatorModal">Оформить сейчас</button>
                               </div>
                               <div class="product-links">
                                   <a href="#"><i class="fas fa-shopping-cart"></i></a>
@@ -335,7 +489,7 @@
                           </p>
                           <div class="product-bottom-details d-flex justify-content-between">
                               <div class="product-url">
-                                  <button type="button" class="btn btn-outline-danger">Получить кредит</button>
+                                  <button type="button" class="btn btn-outline-danger btn-calculator-toggle" name="btn-credit-dream-toggle" data-bs-toggle="modal" data-bs-target="#calculatorModal">Получить кредит</button>
                               </div>
                               <div class="product-links">
                                   <a href="#"><i class="fas fa-shopping-cart"></i></a>
@@ -420,7 +574,6 @@
             </div>
         </div>
     </div>
-
   <footer class="bg-dark text-center text-white">
   <div class="container p-4">
     <section>
@@ -474,5 +627,6 @@
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/java.js"></script>
+    <script src="js/calculator-form.js"></script>
 </body>
 </html>
