@@ -35,8 +35,8 @@ window.addEventListener("DOMContentLoaded",function(){
     };
     formc.addEventListener('submit', function (event) {
       event.preventDefault();
-      if (!formc.checkValidity()) {;
-        event.stopPropagation()
+      if (!formc.checkValidity()) {
+        event.stopPropagation();
         return;
     }
     let input = Object.fromEntries(new FormData(event.target));
