@@ -36,7 +36,7 @@ window.addEventListener("DOMContentLoaded",function(){
     formc.addEventListener('submit', function (event) {
       event.preventDefault();
       if (!formc.checkValidity()) {
-        event.stopPropagation()
+        event.stopPropagation();
         return;
     }
     let input = Object.fromEntries(new FormData(event.target));
@@ -77,9 +77,9 @@ window.addEventListener("DOMContentLoaded",function(){
     fields.forEach((element)=>{
         element.addEventListener('change',(e)=>{
             const field = e.target.closest(".calculator-input-group").querySelector("input[type='range']");
-            if(isNaN(e.target.value)) return;
-            (parseInt(e.target.value) < parseInt(field.attributes.getNamedItem('min').value))? e.target.value = field.attributes.getNamedItem('min').value: console.log('less than min');
-            (parseInt(e.target.value) > parseInt(field.attributes.getNamedItem('max').value))? e.target.value = field.attributes.getNamedItem('max').value: console.log('more than max');
+            if(!(e.target.value)) return;
+            (parseInt(e.target.value) < parseInt(field.attributes.getNamedItem('min').value))? e.target.value = field.attributes.getNamedItem('min').value: null;
+            (parseInt(e.target.value) > parseInt(field.attributes.getNamedItem('max').value))? e.target.value = field.attributes.getNamedItem('max').value: null;
             (field.value!==e.target.value)? field.value=e.target.value : '';
             monthlyPayEval();
             
