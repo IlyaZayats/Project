@@ -1,0 +1,60 @@
+.FAQ h2{
+    text-align: center;
+    font-family: 'Inter';
+    font-style: bold;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+
+    color: #000000;
+}
+
+.accordion {
+    cursor: pointer;
+    padding: 0px;
+    padding-bottom: 0;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 39px;
+    transition: 0.5s;
+    border: 3px solid transparent;
+  }
+  .accordion h3{
+    padding-left: 10px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 25px;
+    position: relative;
+    cursor: pointer;
+  }
+  .accordion-active{
+    background: #E372F7;
+    border-radius: 15px;
+    border: 1px solid #F3FD00;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  }
+  .our_text {
+    padding: 0 18px;
+    color: #000000;
+    border-radius: 15px;
+    background-color: #E372F7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .our_text p{
+    font-weight: 500;
+    font-size: 20px;
+    color: #000000;
+    line-height: 1.37;
+    margin-top: 10px;
+  }
+
+  

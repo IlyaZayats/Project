@@ -1,0 +1,60 @@
+.main-title{
+    font-size: 45px;
+    font-weight: bold;
+}
+.confirm-button{
+    background-color: yellow;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.modal-button{
+    background-color: yellow;
+}
+
+.back-button{
+    height: 100%;
+    width: 100%;
+    font-size: 24px;
+    color: white;
+    background-color: #212529;
+    border-radius: 0;
+}
+
+.upper-back{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.back-button:hover{
+    color:white;
+}
+
+.form-check-label{
+    color:dimgrey;
+}
+
+.img-arrows{
+    height: 50px;
+    width: 50px;
+}
+
+.error{
+    color: red;
+    font-size:14px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 992px){
+    .back-button{
+        width: auto;
+        color: #212529;
+        background-color: transparent;
+    }
+}
+
+@media screen and (min-width: 400px){
+    .main-title{
+        font-size: 55px;
+    }
+}
