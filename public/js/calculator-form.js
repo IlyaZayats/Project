@@ -78,8 +78,8 @@ window.addEventListener("DOMContentLoaded",function(){
         element.addEventListener('change',(e)=>{
             const field = e.target.closest(".calculator-input-group").querySelector("input[type='range']");
             if(isNaN(e.target.value)) return;
-            (e.target.value < field.attributes.getNamedItem('min').value)? e.target.value = field.attributes.getNamedItem('min').value: null;
-            (e.target.value > field.attributes.getNamedItem('max').value)? e.target.value = field.attributes.getNamedItem('max').value: null;
+            (parseInt(e.target.value) < parseInt(field.attributes.getNamedItem('min').value))? e.target.value = field.attributes.getNamedItem('min').value: console.log('less than min');
+            (parseInt(e.target.value) > parseInt(field.attributes.getNamedItem('max').value))? e.target.value = field.attributes.getNamedItem('max').value: console.log('more than max');
             (field.value!==e.target.value)? field.value=e.target.value : '';
             monthlyPayEval();
             
