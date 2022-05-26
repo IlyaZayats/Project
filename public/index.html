@@ -187,7 +187,7 @@
         <a class="nav-link text-white" href="#faq">FAQ</a>
       </li>
       <li class="nav-item col-12 col-md-1">
-        <button type="button" class="btn btn-style">Войти</button>
+        <button type="button" class="btn btn-style btn-warning" data-bs-toggle="modal" data-bs-target="#modal_1">Войти</button>
       </li>
       </ul>
     </div>
@@ -233,11 +233,14 @@
                     <input type="password" class="form-control" id="inputPass">
                   </div>
                 </div>
+                <div class ="row d-flex justify-content-center align-items-center mb-4 mt-4">
+                  <button type="submit" class="btn btn-warning"> Войти </button>
+                </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_2">Регистрация</button>
-              <button type="button" class="btn btn-warning">Войти</button>
+              <button type="button" class="btn btn-warning" onclick="location.href='./registration.html';" type="button">Регистрация</button>
+              <!--<button type="button" class="btn btn-warning">Войти</button> -->
             </div>
           </div>
         </div>
