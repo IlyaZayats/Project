@@ -25,19 +25,19 @@ Route::post('/registration', function (Request $request) {
     $errors = false;
     if (empty($request->input('userName')) || !boolval(preg_match("/^[\sa-zA-Zа-яА-Я-]+$/u", $request->input('userName'))) || mb_strlen($request->input('userName'), 'UTF-8') > 30) {
         $errors = true;
-        $code = $code.'1'.$request->input('userName').'what'.(int)(mb_strlen($request->input('userName'), 'UTF-8') > 30).'bruh'.(int)!boolval(preg_match('/^[\sa-zA-Zа-яА-Я-]+$/u', $request->input('userName')));
+        $code = $code.'1';
     }
     if (empty($request->input('userSurname')) || !boolval(preg_match('/^[\sa-zA-Zа-яА-Я-]+$/u', $request->input('userSurname'))) || mb_strlen($request->input('userSurname'), 'UTF-8') > 30) {
         $errors = true;
-        $code = $code.'2'.$request->input('userSurname').'what'.(int)(mb_strlen($request->input('userSurname'), 'UTF-8') > 30).'bruh'.(int)!boolval(preg_match('/^[\sa-zA-Zа-яА-Я-]+$/u', $request->input('userSurname')));
+        $code = $code.'2';
     }
     if (empty($request->input('userSecondName')) || !boolval(preg_match('/^[\sa-zA-Zа-яА-Я-]+$/u', $request->input('userSecondName'))) || mb_strlen($request->input('userSecondName'), 'UTF-8') > 30) {
         $errors = true;
-        $code = $code.'3'.$request->input('userSecondName').'what'.(int)(mb_strlen($request->input('userSecondName'), 'UTF-8') > 30).'bruh'.(int)!boolval(preg_match('/^[\sa-zA-Zа-яА-Я-]+$/u', $request->input('userSecondName')));
+        $code = $code.'3';
     }
     if (empty($request->input('userITN')) || !boolval(preg_match('/^\d+$/', $request->input('userITN'))) || strlen($request->input('userITN')) != 12) {
         $errors = true;
-        $code = $code.'4'.!boolval(preg_match('/^\d+$/', $request->input('userITN'))).strlen($request->input('userITN')) != 12;
+        $code = $code.'4';
     }
     if (empty($request->input('userPassport')) || !boolval(preg_match('/^\d+$/', $request->input('userPassport'))) || strlen($request->input('userPassport')) != 10) {
         $errors = true;
