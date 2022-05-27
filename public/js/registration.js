@@ -164,7 +164,7 @@ $(document).ready(function (){
                 printError(errors_fields[7],"Используются недопустимые символы!");
             } else if (target.length > 30 || target.length < 8){
                 errors[7] = true;
-                printError(errors_fields[7],"Длина пароля должна быть не менее 8 и не более 30 символов!");
+                printError(errors_fields[7],"Длина пароля должна быть не менее 8 и не более 70 символов!");
             }
             if(!errors[7]){
                 printError(errors_fields[7],"");
@@ -256,11 +256,12 @@ $(document).ready(function (){
                      } else {
                          window.history.pushState({ "isActive": false }, "", "registration");
                          modal.hide();
-                         errors = Array(errors_fields.length+1).fill(true);
-                         start_errors = Array(errors_fields.length).fill(true);
-                         modal_flag = true;
-
                      }
+                 });
+
+                 modal.addEventListener('hide.bs.modal', event => {
+                     errors = Array(errors_fields.length+1).fill(true);
+                     start_errors = Array(errors_fields.length).fill(true);
                  });
 
             })
