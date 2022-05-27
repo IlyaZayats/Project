@@ -17,16 +17,16 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('main');
+    return view('main');
+})->name('main_route');
 
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'authenticate']);
 
 Route::post('/registration', [App\Http\Controllers\RegistrationController::class, 'registration']);
 
-Route::get('/registration', function (Request $request){
+Route::get('/registration', function (){
     return view('registration');
-});
+})->name('registration_route');
 
 Route::get('/cabinet', function (Request $request){
     $acc_type = '0';
