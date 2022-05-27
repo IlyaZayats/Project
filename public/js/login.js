@@ -1,7 +1,8 @@
 window.addEventListener('DOMContentLoaded', function(event){
-    const button = document.getElementById('loginButton');
+    const errorField = document.querySelector('.login-invalid-message');
     const form = document.getElementById('loginForm');
     form.addEventListener('submit',(e)=>{
+        errorField.classList.add('d-none');
         e.preventDefault();
         if(!form.checkValidity()){
             form.classList.add('was-validated');
@@ -23,14 +24,17 @@ window.addEventListener('DOMContentLoaded', function(event){
         
         ).then((response)=>{
             if(!response.ok){
-                throw new Error(response.status);
+                throw new Error(response);
             }
             return response.json();
         }).then((response)=>{
             console.log(response);
             //...Do something 
         })
-        .catch((error)=>console.log(error));
+        .catch((error)=>{
+            errorField.classList.remove('d-none');
+            errorField.innerHTML = error.body['errors'] ?? 'Big error';
+        });
         form.classList.add('was-validated');
     });
 });
