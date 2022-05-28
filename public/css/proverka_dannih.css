@@ -1,0 +1,33 @@
+input[type=text] {
+  width: 60px;
+  height: 25px;
+}
+
+input[type=number] {
+  width: 60px;
+  height: 25px;
+}
+
+select{
+  width: 60px;
+  height: 25px;
+}
+
+p {
+    padding-bottom: 5px;
+   }
+   
+table {
+  border-collapse: collapse;
+  border: 3px solid black;
+}
+
+tr, td{
+	height: 50px;
+}
+
+.btn {
+  background: yellow;
+  border-radius: 25px;
+}
+
