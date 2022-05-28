@@ -28,12 +28,19 @@ window.addEventListener('DOMContentLoaded', function(event){
             }
             return response.json();
         }).then((response)=>{
-            console.log(response);
-            //...Do something 
+            switch(parseInt(response.type)){
+                case 0:
+                    location.href='http://194.67.116.171/cabinet';
+                    break;
+                default:
+                    errorField.classList.remove('d-none');
+                    errorField.innerHTML="Произошла ошибка. Проверьте правильность введенных данных";            
+                } 
+
         })
         .catch((error)=>{
             errorField.classList.remove('d-none');
-            errorField.innerHTML = error.body['errors'] ?? 'Big error';
+            errorField.innerHTML = 'Ошибка запроса';
         });
         form.classList.add('was-validated');
     });
