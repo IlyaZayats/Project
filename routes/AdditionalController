@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
+
+
+class AdditionalController extends Controller
+{
+    public function Additional(Request $request){
+        $code = '0'; 
+        $val = 3;
+        $errors = false;
+        if (empty($request->input('userITN')) || !boolval(preg_match("(\d+\.){10}", $request->input('userITN'))) {
+            $val --;
+            $code = $code.'1';
+        }
+        if (empty($request->input('criminal_record')) || mb_strlen($request->input('criminal_record'), 'UTF-8') > 100) {
+            $val --;
+            $code = $code.'2';
+        }
+        if (empty($request->input('income_statement')) || mb_strlen($request->input('income_statement'), 'UTF-8') > 100) {
+            $val --;
+            $code = $code.'3';
+        }
+        if($val == 0) {
+            $errors = true;
+        }
+
+        if (!$errors) {
+            if(empty(DB::select('SELECT * FROM additional_data WHERE ITN=?', [$request->input('userITN')]))) {
+
+                DB::insert('INSERT INTO additional_data (ITN, criminal_record, income_statement) VALUES (?,?,?,)', [$request->input('userITN'), $request->input('criminal_record'), $request->input('income_statement'), 1]);
+                $type = 0;
+            } else if(!empty(DB::select('SELECT * FROM additional_data WHERE ITN=?', [$request->input('userITN')]))) {
+				DB::update('UPDATE additional_data SET (ITN = ?,criminal_record = ?,income_statement = ?) WHERE ITN=?', [$request->input('userITN'),$request->input('criminal_record'), $request->input('income_statement'),[$request->input('userITN')]))));
+                /*Не понял,как сделать нормальный update,функция типа BindParam отсутствует:(*/
+            }
+        }
+    }
+
+}
