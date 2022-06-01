@@ -1,4 +1,5 @@
 /*  M O D A L   W I N D O W   F O R   C R I M I N A L   R E C O R D   I N F O R M A T I O N  */
+//when small screen  
 
   window.addEventListener("DOMContentLoaded", function(event){
 

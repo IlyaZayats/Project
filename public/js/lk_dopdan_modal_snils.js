@@ -1,4 +1,5 @@
 /*  M O D A L   W I N D O W   F O R   S N I L S  */
+//when small screen
 
 window.addEventListener("DOMContentLoaded", function(event){
 
@@ -23,27 +24,19 @@ window.addEventListener("DOMContentLoaded", function(event){
   modal_snils["snils"] = document.querySelectorAll(".snils");
   modal_snils["submit_button_1"] = document.getElementById("submit_button_1");
   modal_snils["checkmark_1"] = document.querySelector('input[name="check-4"]');
+  modal_snils["sms"] = document.getElementById("sms");
 
   modal_snils.close_snils.addEventListener("click",modal_snils.closeModal_snils);
   modal_snils.show_button_snils.onclick = modal_snils.openModal_snils;
 
-  /*$("modal_snils.main_snils").on("modal_snils.submit_button_1", function(){
-    $.ajax({
-      url: 'back-end.pls',
-      method: 'post',
-      dataType: 'html',
-      data: $(this).serialize(),
-      success: function(data){
-        $('modal_snils.back-end-snils').html(data);
-      }
-    });
-  });*/
-
   function onClick_snils() {
-    modal_snils.checkmark_1.checked = true; //появляется галочка у снилс
-    modal_snils.show_button_snils.style.display = "none";//тут ещё пропадает кнопка "добавить" 
-    modal_snils.show_button_criminal.style.display = "block";//появляется доступ к кнопкe "добавить" у справки о судимости 
-    modal_snils.show_button_ndfl.style.display = "block";//и 2-ндфл
+    if ( modal_snils.snils.value.length === 11){
+      modal_snils.checkmark_1.checked = true; //появляется галочка у снилс
+      modal_snils.show_button_snils.style.display = "none";//тут ещё пропадает кнопка "добавить" 
+      modal_snils.show_button_criminal.style.display = "block";//появляется доступ к кнопкe "добавить" у справки о судимости 
+      modal_snils.show_button_ndfl.style.display = "block";//и 2-ндфл
+    }
+    else modal_snils.sms.innerHTML = "* Вам необходимо ввести 11 цифр!"
   }
 
   let button_snils = modal_snils.submit_button_1;
