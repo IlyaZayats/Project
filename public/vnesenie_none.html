@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -6,7 +5,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/lk_main.css"/>
-        <link rel="stylesheet" href="css/nav-style.css"/>   
+        <link rel="stylesheet" href="css/nav-style.css"/>
+        <link rel="stylesheet" href="css/vnesenie.css">   
     </head>
 
     <body>
@@ -16,7 +16,7 @@
         <div class="p-3 mb-2 bg-dark">
             <ul class="nav justify-content-end">
             <li class="nav-item col-12 col-md-11">
-            <a class="nav-link text-white" href="index.html">Главная</a>
+            <a class="nav-link text-white" href="#">Главная</a>
             </li>
             <li class="nav-item col-12 col-md-1">
             <button type="button" class="btn btn-style">Выйти</button>
@@ -28,34 +28,24 @@
             <div class="col-md-12 mt-4 mb-3 text-center title_lk">
                 <h1 class = "py-3">ЛИЧНЫЙ КАБИНЕТ</h1>
             </div>
-    
-            <div class="row justify-content-center">
-                <div class="col-md-12 mt-5 mb-5 pb-5">
-                    <div class="lk_buttons">
-                        <button type="button" class="lk_but p-3">
-                            ПРОСМОТРЕТЬ СТАТУСЫ КРЕДИТОВ
-                        </button>
-                        <button type="button" class="lk_but p-3"
-                        onclick="window.location.href='lk_additional_data.html'">
-                            ЗАПОЛНИТЬ ДОПОЛНИТЕЛЬНЫЕ ДАННЫЕ
-                        </button>
-                        <button type="button" class="lk_but p-3">
-                            ПРОСМОТРЕТЬ УВЕДОМЛЕНИЯ
-                        </button>
-                        <button type="button" class="lk_but p-3">
-                            НАСТРОЙКИ БЕЗОПАСНОСТИ
-                        </button>
-                        <button type="button" class="lk_but p-3">
-                            ЗАДАТЬ ВОПРОС
-                        </button>
-                    </div>
-                </div>    
+            <div class="col-md-12 mt-5 mb-5 text-center">
+                <h3>ВНЕСЕНИЕ В БАЗУ ДАННЫХ</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-xl-2 mt-5 mb-5">
+                    <h5>Клиент подписал договор?</h5>
+                </div>
+                <div class="col-md-12 col-xl-5 mt-5 mb-5 status_podpisaniya">
+                  <b>
+                    Клиент ещё не ответил на договор
+                </b>
+                </div>
             </div>
         </div>
     
         <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - -  -  -->
     
-    
+    <div class="fixed-bottom">
         <footer class="bg-dark text-center text-white">
             <div class="container p-4">
               <!--
@@ -104,3 +94,5 @@
     
     </body>
 </html>
+    </div>
+        
