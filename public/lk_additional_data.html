@@ -32,101 +32,220 @@
             <div class="col-md-12 mt-3 mb-5 text-center">
                 <h3>ДОПОЛНИТЕЛЬНЫЕ ДАННЫЕ</h3>
             </div>
-            <div class="row justify-content-evenly py-4 ps-5 ms-5 check_lk">
-                <div class="col-3 col-md-3">
-                    <input disabled type="checkbox" id="checkbox-id-1" name="check-1" checked />
-                    <label for="checkbox-id-1">Паспорт</label> 
-                    </br>
-                    <!-- номер паспорта пользователя                                                    ДЛЯ BACK-END <3 -->
-                    </br>
-                    <div class="row position-relative"> 
-                        <div class="col-3 position-absolute top-0 start-0">
-                            <button id="delete-button-1" class="delete-button">Удалить</button>
-                        </div>
-                    </div></br> 
+		
+            <!-- - - - - - - - - - - - - - - - - - L A R G E  S C R E E N - - - - - - - - - -  - - - - - - - -  - - - -  - - -->
+
+            <div class = "large_screen">
+                <div class = "row justify-content-evenly py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <input disabled type="checkbox" id="checkbox-id-1" name="check-1" checked />
+                        <label for="checkbox-id-1">Паспорт</label> 
+                        </br>
+                        <!-- номер паспорта пользователя                                                    ДЛЯ BACK-END <3 -->
+                        </br>
+                        <div class="row position-relative"> 
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 position-absolute">
+                                <button id="delete-button-1" class="delete-button">Удалить</button>
+                            </div>
+                        </div></br> 
+                    </div>
+                    <div class = "col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <input disabled type="checkbox" id="checkbox-id-2" name="check-2" checked  />
+                        <label for="checkbox-id-2">ИНН</label> 
+                        </br>
+                            <!-- номер ИНН пользователя                                                        ДЛЯ BACK-END <3 -->
+                    </div>
                 </div>
-                <div class="col-3 col-md-3">
-                    <input disabled type="checkbox" id="checkbox-id-2" name="check-2" checked  />
-                    <label for="checkbox-id-2">ИНН</label> 
-                    </br>
-                    <!-- номер ИНН пользователя                                                        ДЛЯ BACK-END <3 -->
-                </div>
-            </div>
-            <div class="row justify-content-evenly py-4 ps-5 ms-5 check_lk">
-                <div class="col-4 col-md-3 my-3">
-                    <input disabled type="checkbox" id="checkbox-id-3" name="check-3" />
-                    <label for="checkbox-id-3">2-НДФЛ</label> 
-                    </br>
-                    <!-- тут прикрепляются файлы                                                       ДЛЯ BACK-END <3 -->                                    
-                    </br>            
-                    <div class="row position-relative"> 
-                        <div class="col-3 position-absolute top-0 start-0">
-                            <button id="add-button-3" class="add-button">Добавить</button>
-                            <div id="wrapper_ndfl">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_3"></div>
-                                        <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <input id="ndfl" type="file" class="ndfl"/>
-                                            <button name="subbutton" id="submit_button_3">Подтвердить</button>
-                                        </form>
+                <div class = "row justify-content-evenly py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <input disabled type="checkbox" id="checkbox-id-3" name="check-3-lg" />
+                        <label for="checkbox-id-3">2-НДФЛ</label> 
+                        </br>
+                        <!-- тут прикрепляются файлы                                                       ДЛЯ BACK-END <3 -->                                    
+                        </br>            
+                        <div class="row position-relative"> 
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 position-absolute">
+                                <button id="add-button-lg-3" class="add-button">Добавить</button>
+                                <div id="wrapper_ndfl_lg">
+                                    <div class="modal_content">
+                                        <div class="knopkaX" id="close_3-lg"></div>
+                                            <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                                <input id="ndfl-lg" type="file" accept=".pdf,.png,.jpg" class="ndfl"/><br><br>
+                                                <b style = "color: red; font-size: 10px;">* документ должен быть в формате pdf, png или jpg!</b>
+                                                <button name="subbutton" id="submit_button_3-lg">Подтвердить</button>
+                                            </form>
+                                    </div>
                                 </div>
+                            </div> 
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 position-absolute">
+                                <button id="delete-button-3-lg" class="delete-button">Удалить</button>
                             </div>
                         </div> 
-                        <div class="col-3 position-absolute top-0 start-50 translate-middle-x">
-                            <button id="delete-button-3" class="delete-button">Удалить</button>
-                        </div>
-                    </div>                                                         
-                </div>
-                <div class="col-3 col-md-3 my-3">
-                    <input disabled type="checkbox" id="checkbox-id-4" name="check-4" />
-                    <label for="checkbox-id-4">СНИЛС</label> 
-                    </br>
-                    <div id = "back-end-snils"></div>  <!-- снилс пользователя      ДЛЯ BACK-END <3 -->                                    
-                    </br> 
-                    <div class="row position-relative"> 
-                        <div class="col-3 position-absolute top-0 start-0">
-                            <button id="add-button-4" class="add-button">Добавить</button> 
-                            <div id="wrapper_snils">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_1"></div>
-                                        <form id="main_snils" name="main_snils" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            Введите номер своего <br/> СНИЛС: <br/> <br/>
-                                            <input id="snils" type="text" placeholder = " _ _ _ - _ _ _ - _ _ _  _ _ " class="snils"/>
-                                            <button name="subbutton" id="submit_button_1">Подтвердить</button>
-                                        </form>
+                    </div>
+                    <div class = "col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        <input disabled type="checkbox" id="checkbox-id-4" name="check-4-lg" />
+                        <label for="checkbox-id-4">СНИЛС</label> 
+                        </br>
+                        <div id = "back-end-snils-lg"></div>  <!-- снилс пользователя      ДЛЯ BACK-END <3 -->                                    
+                        </br> 
+                        <div class="row position-relative"> 
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 position-absolute">
+                                <button id="add-button-lg-4" class="add-button">Добавить</button> 
+                                <div id="wrapper_snils_lg">
+                                    <div class="modal_content">
+                                        <div class="knopkaX" id="close_1-lg"></div>
+                                            <form id="main_snils_lg" name="main_snils" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                                Введите номер своего <br/> СНИЛС: <br/> <br/>
+                                                <input id="snils-lg" class = "snils" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="11" placeholder = " _ _ _ - _ _ _ - _ _ _  _ _ " class="snils"/>
+                                                <button name="subbutton" id="submit_button_1-lg">Подтвердить</button>
+                                            </form>
+                                        <p id = "sms_lg" style="color: red; font-size: 10px;" class = "ms-4"></p>
+                                    </div>
                                 </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class = "row justify-content-evenly py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-sm-3 col-md-3 col-lg-3 col-xl-3 my-5">
+                        <input disabled type="checkbox" id="checkbox-id-5" name="check-5-lg" />
+                        <label for="checkbox-id-5">Справка о судимости</label>
+                        </br>
+                        <!-- тут приклепляется справка о судимости       ДЛЯ BACK-END <3 -->
+                        </br>           
+                        <div class="row position-relative"> 
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 position-absolute">
+                                <button id="add-button-lg-5" class="add-button">Добавить</button>
+                                <div id="wrapper_criminal_lg">
+                                    <div class="modal_content">
+                                        <div class="knopkaX" id="close_2-lg"></div>
+                                            <form id="main_criminal" name="main_criminal" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                                <input id="criminal_record-lg" type="file" accept=".pdf,.png,.jpg" class="criminal_record"/><br><br>
+                                                <b style = "color: red; font-size: 10px;">* документ должен быть в формате pdf, png или jpg!</b>
+                                                <button name="subbutton" id="submit_button_2-lg">Подтвердить</button>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 position-absolute">
+                                <button id="delete-button-5-lg" class="delete-button">Удалить</button>
+                            </div>
+                        </div>                                                         
+                    </div>
+                    <div class = "col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+                </div> 
+            </div>
+
+            <!-- - - - - - - - - - - - - - - - - - S M A L L  S C R E E N - - - - - - - - - -  - - - - - - - -  - - - -  - - -->
+
+            <div class = "small_screen">
+                <div class = "row justify-content-center py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-6">
+                        <input disabled type="checkbox" id="checkbox-id-1" name="check-1" checked />
+                        <label for="checkbox-id-1">Паспорт</label> 
+                        </br>
+                        <!-- номер паспорта пользователя                                                    ДЛЯ BACK-END <3 -->
+                        </br>
+                        <div class="row position-relative"> 
+                            <div class="col-6 position-absolute">
+                                <button id="delete-button-1" class="delete-button">Удалить</button>
+                            </div>
+                        </div></br> 
+                    </div>
+                </div>
+                <div class = "row justify-content-center py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-6">
+                        <input disabled type="checkbox" id="checkbox-id-2" name="check-2" checked  />
+                        <label for="checkbox-id-2">ИНН</label> 
+                        </br>
+                            <!-- номер ИНН пользователя                                                        ДЛЯ BACK-END <3 -->
+                    </div>
+                </div>
+                <div class = "row justify-content-center py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-6">
+                        <input disabled type="checkbox" id="checkbox-id-3" name="check-3" />
+                        <label for="checkbox-id-3">2-НДФЛ</label> 
+                        </br>
+                        <!-- тут прикрепляются файлы                                                       ДЛЯ BACK-END <3 -->                                    
+                        </br>            
+                        <div class="row position-relative"> 
+                            <div class="col-6 position-absolute">
+                                <button id="add-button-3" class="add-button">Добавить</button>
+                                <div id="wrapper_ndfl">
+                                    <div class="modal_content">
+                                        <div class="knopkaX" id="close_3"></div>
+                                            <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                                <input id="ndfl" type="file" accept=".pdf,.png,.jpg" class="ndfl"/><br><br>
+                                                <b style = "color: red; font-size: 10px;">* документ должен быть в формате pdf, png или jpg!</b>
+                                                <button name="subbutton" id="submit_button_3">Подтвердить</button>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-6 position-absolute">
+                                <button id="delete-button-3" class="delete-button">Удалить</button>
                             </div>
                         </div> 
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-evenly py-4 ps-5 ms-5 check_lk">
-                <div class="col-8 col-md-8 my-5">
-                    <input disabled type="checkbox" id="checkbox-id-5" name="check-5" />
-                    <label for="checkbox-id-5">Справка о судимости</label>
-                    </br>
-                    <!-- тут приклепляется справка о судимости       ДЛЯ BACK-END <3 -->
-                    </br>           
-                    <div class="row position-relative"> 
-                        <div class="col-3">
-                            <button id="add-button-5" class="add-button">Добавить</button>
-                            <div id="wrapper_criminal">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_2"></div>
-                                        <form id="main_criminal" name="main_criminal" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <input id="criminal_record" type="file" class="criminal_record"/>
-                                            <button name="subbutton" id="submit_button_2">Подтвердить</button>
-                                        </form>
+                <div class = "row justify-content-center py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-6">
+                        <input disabled type="checkbox" id="checkbox-id-4" name="check-4" />
+                        <label for="checkbox-id-4">СНИЛС</label> 
+                        </br>
+                        <div id = "back-end-snils"></div>  
+                        <!-- снилс пользователя      ДЛЯ BACK-END <3 -->                                    
+                        </br> 
+                        <div class="row position-relative"> 
+                            <div class="col-6 position-absolute">
+                                <button id="add-button-4" class="add-button">Добавить</button> 
+                                <div id="wrapper_snils">
+                                    <div class="modal_content">
+                                        <div class="knopkaX" id="close_1"></div>
+                                            <form id="main_snils" name="main_snils" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                                Введите номер своего <br/> СНИЛС: <br/> <br/>
+                                                <input id="snils" class = "snils" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="11" placeholder = " _ _ _ - _ _ _ - _ _ _  _ _ "/>
+                                                <button name="subbutton" id="submit_button_1">Подтвердить</button>
+                                            </form>
+                                        <p id = "sms" style="color: red; font-size: 10px;" class = "ms-3"></p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div> 
-                        <div class="col-3 position-absolute top-0 start-50 translate-middle-x">
-                            <button id="delete-button-5" class="delete-button">Удалить</button>
+                            </div> 
                         </div>
-                    </div>                                                         
+                    </div>
                 </div>
-             </div>
+                <div class = "row justify-content-center py-4 ps-md-3 ps-lg-5 ms-md-3 ms-lg-5 check_lk">
+                    <div class = "col-6 my-5">
+                        <input disabled type="checkbox" id="checkbox-id-5" name="check-5" />
+                        <label for="checkbox-id-5">Справка о судимости</label>
+                        </br>
+                        <!-- тут приклепляется справка о судимости       ДЛЯ BACK-END <3 -->
+                        </br>           
+                        <div class="row position-relative"> 
+                            <div class="col-6 position-absolute">
+                                <button id="add-button-5" class="add-button">Добавить</button>
+                                <div id="wrapper_criminal">
+                                    <div class="modal_content">
+                                        <div class="knopkaX" id="close_2"></div>
+                                            <form id="main_criminal" name="main_criminal" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                                <input id="criminal_record" type="file" accept=".pdf,.png,.jpg" class="criminal_record"/><br><br>
+                                                <b style = "color: red; font-size: 10px;">* документ должен быть в формате pdf, png или jpg!</b>
+                                                <button name="subbutton" id="submit_button_2">Подтвердить</button>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-6 position-absolute">
+                                <button id="delete-button-5" class="delete-button">Удалить</button>
+                            </div>
+                        </div>                                                         
+                    </div>
+                </div> 
+            </div>
+
+            </div>   
         </div>
+
 
         <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - -  -  -->
 
