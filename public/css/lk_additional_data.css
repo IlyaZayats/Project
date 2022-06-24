@@ -15,6 +15,17 @@ body {
   background: linear-gradient(to left, white, rgba(246, 255, 0, 0.438),white );
 }
 
+@media (min-width: 0px) and (max-width: 575.90px) {
+  .large_screen{
+    display: none;
+  }
+}
+
+@media (min-width: 576px){
+  .small_screen{
+    display: none;
+  }
+}
 
 input[type="checkbox"] {
   display: none;
@@ -89,31 +100,50 @@ input:checked + label:before {
 
 /* кнопки "добавить" и "удалить" до взаимодействия с модальными окнами */
 
+#add-button-lg-4 {
+  display: block;
+}
 #add-button-4 {
   display: block;
 }
 
+#add-button-lg-3 {
+  display: none;
+}
 #add-button-3 {
   display: none;
 }
 
+#delete-button-3-lg {
+  display: none;
+}
 #delete-button-3 {
   display: none;
 }
 
+#add-button-lg-5 {
+  display: none;
+}
 #add-button-5 {
   display: none;
 }
 
+#delete-button-5-lg {
+  display: none;
+} 
 #delete-button-5 {
   display: none;
 } 
 
 /* фон во время открытых модальных окон */
 
+#wrapper_snils_lg, 
 #wrapper_snils, 
+#wrapper_criminal_lg,
 #wrapper_criminal, 
-#wrapper_ndfl {
+#wrapper_ndfl_lg,
+#wrapper_ndfl,
+{
   display: none;
   position: fixed;
   overflow: auto;
@@ -140,15 +170,22 @@ input:checked + label:before {
   
   #main_ndfl,
   #main_snils,
+  #main_snils_lg,
   #main_criminal {
     position: relative;
     padding: 10%;  
   }
 
-  /* кнопки "подтвердить" в модальных окнах */
+  .snils {
+    position: relative;
+  }
 
+  /* кнопки "подтвердить" в модальных окнах */
+  #submit_button_1-lg,
   #submit_button_1, 
+  #submit_button_2-lg,
   #submit_button_2, 
+  #submit_button_3-lg,
   #submit_button_3 {
     margin-top:10%;
     left: 50%;
@@ -162,8 +199,11 @@ input:checked + label:before {
     border-radius: 5px;
   }
 
+  #submit_button_1-lg:hover,
   #submit_button_1:hover, 
+  #submit_button_2-lg:hover,
   #submit_button_2:hover, 
+  #submit_button_3-lg:hover,
   #submit_button_3:hover {
     margin-top:10%;
     left: 50%;
@@ -179,8 +219,11 @@ input:checked + label:before {
 
   /* кнопка Х */
   
+  #close_1-lg, 
   #close_1, 
+  #close_2-lg,
   #close_2, 
+  #close_3-lg,
   #close_3{
     float: right;
     cursor: pointer;
@@ -228,4 +271,3 @@ input:checked + label:before {
     transform: scale(0.8) rotate(45deg);
     color:  red;
   }
-  
