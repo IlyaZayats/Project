@@ -271,4 +271,3 @@ input:checked + label:before {
     transform: scale(0.8) rotate(45deg);
     color:  red;
   }
-  
