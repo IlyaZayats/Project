@@ -31,3 +31,7 @@ tr, td{
   border-radius: 25px;
 }
 
+#err{
+	color: red;
+}
+
