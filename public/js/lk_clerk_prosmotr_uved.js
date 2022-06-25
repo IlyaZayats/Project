@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", function(event){
           this.wrapper_1.style.display = "none";
           this.wrapper_2.style.display = "none";
           this.wrapper_3.style.display = "none";
-          window.history.pushState({"formtoggle": false},"","lk_view_notifications.html");
+          window.history.pushState({"formtoggle": false},"","lk_clerk_prosmotr_uved.html");
         },
         openModal_1: ()=>{
           this.wrapper_1.style.display = "flex";
