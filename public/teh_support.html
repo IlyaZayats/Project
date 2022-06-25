@@ -3,9 +3,9 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/black_list.css"/>
+        <link rel="stylesheet" href="css/teh_support.css"/>
         <link rel="stylesheet" href="css/nav-style.css"/>
-        <script src="js/black_list.js"></script>
+        <script src="js/teh_support.js"></script>
     </head>
 
     <body>
@@ -28,7 +28,7 @@
         </div>
         
     
-        <!-- - - - - - - - - - - - - - - - - B L A C K _ L I S T - - - - - - - - - - - - - - - - - - - -->
+        <!-- - - - - - - - - - - - - - - - - T E H _ S U P P O R T - - - - - - - - - - - - - - - - - - - -->
         
         
         <div class = "container-fluid">
@@ -38,27 +38,23 @@
                 </div>
             </div>
             <div class="col-md-12 mt-3 mb-5 text-center">
-                <h3>ДОБАВЛЕНИЕ В ЧС</h3>
+                <h3>ОБРАЩЕНИЕ В ТЕХПОДДЕРЖКУ</h3>
             </div>
             
-            <form class="position-relative top-0 start-50 translate-middle-x" id="ChS_INN" name="ChS_INN" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+            <form class="position-relative top-0 start-50 translate-middle-x" method="POST" onsubmit="return false;" accept-charset="UTF-8">
                 <div class="mb-3">
-                    <br/> ИНН <br/><br/>
-                    <input id="inn" type="text" class="form-control INN w-50 p-3" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" minlength="12" maxlength="12" required>
+                    <input id="topic" type="text" class="form-control w-75 p-3" placeholder = "Тематика" required>
                 </div>
                 <div class="mb-3">
-                    <br/> Причина добавления в ЧС <br/><br/>
-                    <textarea id="chs" class="form-control cause_ChS w-75 p-3" rows="10" placeholder = "причина" required></textarea>
+                    <br/>
+                    <textarea id="description" class="form-control w-75 p-3" rows="10" placeholder = "Описание" required></textarea>
                 </div>
-                <button type="button" id="mybutt" onclick="return false;" class="btn btn-style position-relative top-0 start-50 translate-middle-x mb-5" style="color: black;">Добавить в ЧС</button>
+                <button type="button" id="mybutt" onclick="return false;" class="btn btn-style position-relative top-0 start-50 translate-middle-x mb-5" style="color: black;">Отправить</button>
             </form>
-            
-            
         </div>
         
     
         <!-- - - - - - - - - - - - - - - - - - F  O  O  T  E  R - - - - - - - - - - - - - - - - - - - - -->
-    
     
         <footer class="bg-dark text-center text-white">
             <div class="container p-4">
