@@ -23,9 +23,17 @@ input[type=text] {
   padding-top: 20px; 
 }
 
-.btn {
+#smenit {
   background: yellow;
   border-radius: 25px;
   margin-top: 20px;
   height: 50px;
+}
+
+#ema, #pass, #pass1, #pass2{
+	color: red;
+}
+
+span{
+	margin-top: 10px;
 }

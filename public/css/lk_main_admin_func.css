@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .title_lk {
+      text-align: center;
+      font-style: normal;
+      text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  }
+
+  .title_lk h1{
+    background: linear-gradient(to left, white, rgba(246, 255, 0, 0.438),white );
+  }
+
+  h1{
+    font-weight: bold;
+  }
+  
+  #creating, #deleting, #editing {
+  background: yellow;
+  border-radius: 25px;
+  margin-top: 20px;
+  height: 50px;
+}
+
+input[type=number] {
+  width: 200px;
+  height: 25px;
+  margin-left: 15px;
+  border-radius: 8px;
+  background-color: #e3e3e3;
+}
+
+#msg { 
+    color: red; /* Цвет текста */ 
+    display: none; /* Прячем сообщение */
+   }
