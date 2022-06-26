@@ -1,11 +1,9 @@
-window.addEventListener('DOMContentLoaded', function (event) {
-    let b = document.getElementById("mybutt");
-    b.addEventListener("click", function (event) {
-        let answer_var = document.getElementById("answer");
-        
-        if (answer.value != 0)
-            alert("Ответ отправлен!")
-        else
-            alert("Введите текст ответа!");
-        });
-    });
+function sendform() {
+	let infa = document.getElementById("answer");
+	if(!infa.value.trim()){
+		document.getElementById("err").innerHTML = "Заполните поле!";
+		infa.style.borderColor="#FF0000";
+		return false;
+	}
+	return true;
+}
