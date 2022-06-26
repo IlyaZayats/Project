@@ -28,3 +28,7 @@ button.btn-style {
 br {
   font-size: 24px;
 }
+
+#err{
+	color: red;
+}
