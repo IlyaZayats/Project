@@ -147,41 +147,41 @@ $(document).ready(function (){
         });
 		
 		$("#userAcc").change(event => {
-            start_errors[1] = false;
+            start_errors[8] = false;
             let target = event.target.value;
-            errors[1] = false;
-            if (!reg_exps[1].test(target)){
-                errors[1] = true;
-                printError(errors_fields[1],"Используются недопустимые символы!");
+            errors[8] = false;
+            if (!reg_exps[8].test(target)){
+                errors[8] = true;
+                printError(errors_fields[8],"Используются недопустимые символы!");
             } else if (target.length>30){
                 errors[1] = true;
-                printError(errors_fields[1],"Длина типа аккаунта не может превышать 30 сиволов!");
-            }
-            if(!errors[1]){
-                printError(errors_fields[1],"");
-            }
-        });
-
-        $("#userPolicy").change(event => {
-            start_errors[8] = false;
-            errors[8] = false;
-            if(!$("#userPolicy").is(":checked")){
-                errors[8] = true;
-                printError(errors_fields[8],"Вы не согласились на обработку персональных данных!");
+                printError(errors_fields[8],"Длина типа аккаунта не может превышать 30 сиволов!");
             }
             if(!errors[8]){
                 printError(errors_fields[8],"");
             }
         });
 
+        $("#userPolicy").change(event => {
+            start_errors[9] = false;
+            errors[9] = false;
+            if(!$("#userPolicy").is(":checked")){
+                errors[9] = true;
+                printError(errors_fields[9],"Вы не согласились на обработку персональных данных!");
+            }
+            if(!errors[9]){
+                printError(errors_fields[9],"");
+            }
+        });
+
         $("#userPasswordCheck").change(event => {
             let target = event.target.value;
-            errors[9] = false;
+            errors[10] = false;
             if(target !== $("#userPassword").val()){
-                errors[9] = true;
+                errors[10] = true;
                 printError(errors_fields[7],"Пароли не совпадают!");
             }
-            if(!errors[9] && !errors[7]){
+            if(!errors[10] && !errors[7]){
                 printError(errors_fields[7],"");
             }
         });
@@ -270,7 +270,7 @@ $(document).ready(function (){
         [".email", "Введите адрес электронной почты!"],
         [".login", "Введите логин!"],
         [".password", "Введите пароль!"],
-		[".acc", "Введите тип аккааунта!"],
+		[".acc", "Введите тип аккаунта!"],
         [".policy", "Вы не согласились на обработку персональных данных!"]
     ]);
 

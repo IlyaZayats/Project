@@ -104,7 +104,7 @@ $(document).ready(function (){
             errors[5] = false;
             if (!reg_exps[5].test(target)){
                 errors[5] = true;
-                printError(errors_fields[5],"Неккоретный адрес электронной почты!");
+                printError(errors_fields[5],"Неккоректный адрес электронной почты!");
             } else if (target.length > 255){
                 errors[5] = true;
                 printError(errors_fields[5],"Длина адреса электронной почты не может превышать 255 символов!");
@@ -246,14 +246,6 @@ $(document).ready(function (){
     };
 
     const empty_msg = new Map ([
-        [".surname", "Введите фамилию!"],
-        [".name", "Введите имя!"],
-        [".second-name", "Введите отчество!"],
-        [".passport", "Введите паспорт(серия,номер)!"],
-        [".itn", "Введите ИНН!"],
-        [".email", "Введите адрес электронной почты!"],
-        [".login", "Введите логин!"],
-        [".password", "Введите пароль!"],
         [".policy", "Вы не согласились на обработку персональных данных!"]
     ]);
 
