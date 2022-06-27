@@ -3,9 +3,22 @@ window.addEventListener('DOMContentLoaded', function (event) {
     b.addEventListener("click", function (event) {
         let answer_var = document.getElementById("answer");
         
-        if (answer.value != 0)
-            alert("Ответ отправлен!")
-        else
-            alert("Введите текст ответа!");
+        if (answer.value == 0)
+            showError('answer', 'Заполните поле!');
         });
     });
+
+
+function showError(field, errorMessage) {
+	var errorSpan = document.createElement("span");
+	var errorMessage = document.createTextNode(errorMessage);
+
+	errorSpan.appendChild(errorMessage);
+	errorSpan.className = "errorMsg";
+
+	var fieldLabel = document.getElementById(field).previousSibling;
+	while (fieldLabel.nodeName.toLowerCase() != "label") {
+		fieldLabel = fieldLabel.previousSibling;
+	}
+	fieldLabel.appendChild(errorSpan);
+}
