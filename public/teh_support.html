@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="css/teh_support.css"/>
         <link rel="stylesheet" href="css/nav-style.css"/>
         <script src="js/teh_support.js"></script>
+        <script src="js/leave.js"></script>
     </head>
 
     <body>
@@ -22,7 +23,7 @@
             <a class="nav-link text-white" href="index.html">Главная</a>
             </li>
             <li class="nav-item col-12 col-md-1">
-            <button type="button" class="btn btn-style">Выйти</button>
+            <button type="button" class="btn btn-style leave-button">Выйти</button>
             </li>
             </ul>
         </div>
@@ -43,10 +44,11 @@
             
             <form class="position-relative top-0 start-50 translate-middle-x" method="POST" onsubmit="return false;" accept-charset="UTF-8">
                 <div class="mb-3">
+                    <label for="topic"></label>
                     <input id="topic" type="text" class="form-control w-75 p-3" placeholder = "Тематика" required>
                 </div>
                 <div class="mb-3">
-                    <br/>
+                    <label for="description"></label><br/>
                     <textarea id="description" class="form-control w-75 p-3" rows="10" placeholder = "Описание" required></textarea>
                 </div>
                 <button type="button" id="mybutt" onclick="return false;" class="btn btn-style position-relative top-0 start-50 translate-middle-x mb-5" style="color: black;">Отправить</button>
