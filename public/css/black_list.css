@@ -28,3 +28,26 @@ button.btn-style {
 br {
   font-size: 24px;
 }
+
+form label {
+  position: relative;
+  font-size: 24px;
+}
+
+.errorMsg {
+  position: absolute;
+  left: 0;
+  top: 90px;
+  width: 200px;
+  color: red;
+  font-size: 18px;
+}
+
+.chserrorMsg {
+  position: absolute;
+  left: 0;
+  top: 305px;
+  width: 200px;
+  color: red;
+  font-size: 18px;
+}

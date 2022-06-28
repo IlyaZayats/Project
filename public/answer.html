@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="css/nav-style.css"/>
         <script src="js/answer.js"></script>
     </head>
-
     <body>
       
         
@@ -22,11 +21,21 @@
             <a class="nav-link text-white" href="index.html">Главная</a>
             </li>
             <li class="nav-item col-12 col-md-1">
-            <button type="button" class="btn btn-style">Выйти</button>
+            <button type="button" onclick="location.href='http://194.67.116.171/leave'" class="btn btn-style">Выйти</button>
             </li>
             </ul>
         </div>
-        
+
+    
+          
+            
+    
+
+          
+    
+    
+  
+      
     
         <!-- - - - - - - - - - - - - - - - - T E H _ S U P P O R T - - - - - - - - - - - - - - - - - - - -->
         
@@ -41,12 +50,11 @@
                 <h3>ОТПРАВКА ОТВЕТА КЛИЕНТУ</h3>
             </div>
             
-            <form action="" name="form" method="POST" onsubmit="return sendform();">
+            <form class="position-relative top-0 start-50 translate-middle-x" method="POST" onsubmit="return false;" accept-charset="UTF-8">
                 <div class="mb-3">
-                    <textarea id="answer" class="form-control w-75 p-3" rows="10" placeholder = "текст ответа"></textarea>
-					<span id="err"></span>
+                    <textarea id="answer" class="form-control w-75 p-3" rows="10" placeholder = "текст ответа" required></textarea>
                 </div>
-                <button type="submit" id="mybutt" class="btn btn-style position-relative top-0 start-50 translate-middle-x mb-5" style="color: black;">Отправить</button>
+                <button type="button" id="mybutt" onclick="return false;" class="btn btn-style position-relative top-0 start-50 translate-middle-x mb-5" style="color: black;">Отправить</button>
             </form>
         </div>
         

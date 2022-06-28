@@ -30,9 +30,22 @@ br {
 }
 
 #solvency {
-  background-color: #999999; 
   color: black;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+}
+
+form label {
+  position: relative;
+  font-size: 24px;
+}
+
+.errorMsg {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 200px;
+  color: red;
+  font-size: 18px;
 }
