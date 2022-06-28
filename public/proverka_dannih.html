@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -39,7 +38,7 @@
         <div class="proverka_dannih">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<table class="table table-bordered border-dark table-hover">
 							<thead>
 								<th scope="col">НАЗВАНИЕ ДОКУМЕНТА</th>
@@ -70,11 +69,11 @@
 						</table>
 					</div>
                     
-					<div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<div class="sprava_ot_table_dokum">
 							<form action="" name="form" method="POST" onsubmit="return sendform();">
 								<p><label>Количество просроченных платежей: <input type="text" id="kolvo_prosr_plategey" disabled></label><br/></p>
-								<p><label>Возраст клиента: <input type="number" min="1" name="vozrast_klienta" id="vozrast_klienta"></label></p>
+								<p><label>Возраст клиента: <input type="number" name="vozrast_klienta" id="vozrast_klienta"></label></p>
 								<p>
 									<label>Все документы прошли проверку на корректность и подлинность:
 										<select id="doki">
@@ -84,6 +83,7 @@
 										</select>
 									</label>
 								</p>
+								<span id = "err"></span>
 								<div class="d-grid gap-2">
 									<button class="btn" id="vnesti_dannie_v_bd" type="submit"><b>Внести результат проверки в базу данных</b></button>
 									<button class="btn" id="proverka_platejesposobnosti" type="button" onclick="location.href = 'https://google.com'"><b>Проверка платёжеспособности</b></button>
