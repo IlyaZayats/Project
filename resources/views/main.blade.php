@@ -4,14 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/project_css.css">
-    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="http://194.67.116.171/css/bootstrap.css">
+    <link rel="stylesheet" href="http://194.67.116.171/css/style.css">
+    <link rel="stylesheet" href="http://194.67.116.171/css/calculator.css">
     <title>Tiunoff Bank</title>
 </head>
 <!-- Modal -->
@@ -25,6 +23,7 @@
             <div class="modal-body calulator-form-wrapper container-lg">
                 <div class="row">
                     <form class="needs-validation col-12 col-lg-8" id="credit-calculation" novalidate>
+                        @csrf
                         <div class="calculator-type-select col-12 mb-3">
                             <label for="credit-type-selector" class="form-label">
                                 Выбор типа услуги:
@@ -38,25 +37,25 @@
                                 Произошла ошибка выбора типа.
                             </div>
                         </div>
-                        <div class="calculator-credit-card-block calculator-credit-block caluclator-active col-12">
+                        <div class="calculator-credit-card-block calculator-credit-block col-12">
                             <div>
                                 <h5>Кредитная карта на сумму:</h5>
                             </div>
                             <div class="d-flex credit-card-amount flex-column flex-md-row justify-content-md-center align-items-md-center">
                                 <div class="form-check calc-types w-100 text-md-center">
-                                    <input class="form-check-input" name="credit-card-sum" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="50000" checked required>
+                                    <input class="form-check-input" name="credit-card-sum" type="radio" id="flexRadioDefault1" value="50000" checked required>
                                     <label class="form-check-label text-center" for="flexRadioDefault1">
                                         50,000
                                     </label>
                                 </div>
                                 <div class="form-check calc-types w-100 text-md-center">
-                                    <input class="form-check-input" name="credit-card-sum" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="100000" required>
+                                    <input class="form-check-input" name="credit-card-sum" type="radio" id="flexRadioDefault2" value="100000" required>
                                     <label class="form-check-label text-center" for="flexRadioDefault2">
                                         100,000
                                     </label>
                                 </div>
                                 <div class="form-check calc-types w-100 text-md-center">
-                                    <input class="form-check-input" name="credit-card-sum" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="200000" required>
+                                    <input class="form-check-input" name="credit-card-sum" type="radio" id="flexRadioDefault3" value="200000" required>
                                     <label class="form-check-label text-center" for="flexRadioDefault3">
                                         200,000
                                     </label>
@@ -154,10 +153,10 @@
                     <div class="col-md-4 d-lg-flex justify-content-center align-items-right d-none calculator-bank-img mr-0 pr-0">
                         <div class="container">
                             <div class="row">
-                                <img src="img/tiunoff-crop.png" class="d-block mb-2 img-fluid pr-0 mr-0" width="308px" height="270px" alt="bank-logo">
+                                <img src="http://194.67.116.171/img/tiunoff-crop.png" class="d-block mb-2 img-fluid pr-0 mr-0" width="308px" height="270px" alt="bank-logo">
                             </div>
                             <div class="row">
-                                <img src="img/card-credit-crop.png" class="d-block mt-2 img-fluid pr-0 mr-0" width="575px" height="414px" alt="bank-card">
+                                <img src="http://194.67.116.171/img/card-credit-crop.png" class="d-block mt-2 img-fluid pr-0 mr-0" width="575px" height="414px" alt="bank-card">
                             </div>
                         </div>
                     </div>
@@ -169,6 +168,9 @@
         </div>
     </div>
 </div>
+
+<!--LOGIN-->
+@if(!empty($pass_field))
 <div class="modal fade" id="modal_1" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -177,43 +179,37 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/" class="needs-validation" id="loginForm" novalidate>
+                <form id="loginForm" accept-charset="UTF-8">
+                    @csrf
                     <div class="row mb-3">
-                        <label for="inputLogin" class="col-sm-2 col-form-label">Логин</label>
+                        <label for="userLogin" class="col-sm-2 col-form-label">Логин</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputLogin" name="userLogin" minlength="8" maxlength="30" required>
-                            <div class="valid-feedback">
-                                Выбрано четко!
-                            </div>
-                            <div class="invalid-feedback">
-                                Чел,ты...
-                            </div>
+                            <input type="text" class="form-control data" id="userLogin" name="@php print $login_field; @endphp">
+                            <div class="login"></div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputPass" class="col-sm-2 col-form-label">Пароль</label>
+                        <label for="userPassword" class="col-sm-2 col-form-label">Пароль</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPass"  name="userPassword" minlength="8" maxlength="80" required>
-                            <div class="valid-feedback">
-                                Выбрано четко!
-                            </div>
-                            <div class="invalid-feedback">
-                                Чел,ты...
-                            </div>
+                            <input type="password" class="form-control data" id="userPassword" name="@php print $pass_field; @endphp">
+                            <div class="password"></div>
                         </div>
                     </div>
                     <div class ="row d-flex justify-content-center align-items-center mb-4 mt-4">
-                        <button form="loginForm" type="submit" class="btn btn-warning" id="loginButton"> Войти </button>
+                        <input type="button" class="btn btn-warning" id="confirmButton" value="Войти">
+                        <div class="login-error"></div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer d-flex justify-content-center align-items-center">
-                <button type="button" class="btn btn-warning" onclick="location.href='./registration.html';" type="button">Регистрация</button>
+                <button class="btn btn-warning" onclick="location.href='/registration';" type="button">Регистрация</button>
                 <!--<button type="button" class="btn btn-warning">Войти</button> -->
             </div>
         </div>
     </div>
 </div>
+@endif
+
 <body>
 <nav class="navbar navbar-expand-lg" style="background-color: black;"></nav>
 
@@ -231,18 +227,24 @@
         <li class="nav-item col-12 col-md-1">
             <a class="nav-link text-white" href="#faq">FAQ</a>
         </li>
+        @if(empty($login))
         <li class="nav-item col-12 col-md-1">
             <button type="button" class="btn btn-style btn-warning" data-bs-toggle="modal" data-bs-target="#modal_1">Войти</button>
         </li>
+        @else
+        <li class="nav-item col-md-auto">
+            <a class="nav-link text-white" aria-current="page" href="http://194.67.116.171/cabinet">Личный кабинет</a>
+        </li>
+        @endif
     </ul>
 </div>
 <div class="l1">
-    <div class="logo1"><img src="img/image-3.png" alt="Tiunoff bank" class="left" /></div>
+    <div class="logo1"><img src="http://194.67.116.171/img/image-3.png" alt="Tiunoff bank" class="left" /></div>
     <div class="left">
-        <h1>Лучшие кредитные предложения в Краснодаре!<h1>
+        <h1>Лучшие кредитные предложения в Краснодаре!</h1>
                 <a href="#credits" class="button">Ознакомиться</a>
     </div>
-    <div><img src="img/image1.jpg" class="img-fluid" /></div>
+    <div><img src="http://194.67.116.171/img/image1.jpg" class="img-fluid" /></div>
 </div>
 <div class="l2">
     <div class="logo2">
@@ -250,9 +252,11 @@
         <p>Мобильного приложения нет, а иконка есть</p>
     </div>
     <div>
-        <li>Рекомендовано 1 преподавателем</li>
-        <li>Ваще крутая вещь</li>
-        <li>Гарантированная выдача микрозаймов</li>
+        <ul>
+            <li>Рекомендовано 1 преподавателем</li>
+            <li>Ваще крутая вещь</li>
+            <li>Гарантированная выдача микрозаймов</li>
+        </ul>
     </div>
 </div>
 <!--
@@ -351,12 +355,12 @@
                     <div class="grani-kreditov">
                         <div class="credit-block">
                             <div class="credit-title"><p><b>Кредитная карта</b></p>
-                                <img src="img/card.png" style="width: 40px;"> </div>
+                                <img src="http://194.67.116.171/img/card.png" style="width: 40px;"> </div>
                             <ul class="table-list">
                                 <li>Бесплатное обслуживание</li>
                                 <li>Оформление с 18 лет</li>
                                 <li>30 дней без процентов</li>
-                                </br>
+                                <br/>
                             </ul>
                             <div class="button">
                                 <a class="btn contact-button" id="contact-button-1" href="#card1">подробнее</a>
@@ -368,7 +372,7 @@
                     <div class="grani-kreditov">
                         <div class="credit-block">
                             <div class="credit-title"><p><b>Кредит наличными</b></p>
-                                <img src="img/stonks.png" style="width: 40px;"> </div>
+                                <img src="http://194.67.116.171/img/stonks.png" style="width: 40px;"> </div>
                             <ul>
                                 <li>Быстрое решение по заявке</li>
                                 <li>До 1 млн рублей</li>
@@ -385,7 +389,7 @@
                     <div class="grani-kreditov">
                         <div class="credit-block">
                             <div class="credit-title"><p><b>На исполнение мечты</b></p>
-                                <img src="img/pig.png" style="width: 40px;"> </div>
+                                <img src="http://194.67.116.171/img/pig.png" style="width: 40px;"> </div>
                             <ul>
                                 <li>Низкая процентная ставка</li>
                                 <li>До 15 млн рублей</li>
@@ -440,7 +444,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-3">
                     <div class="product-card" id="card1">
                         <div class="product-thumb">
-                            <a href="#"><img src="img/creditka.png" alt=""></a>
+                            <a href="#"><img src="http://194.67.116.171/img/creditka.png" alt=""></a>
                         </div>
                         <div class="product-details">
                             <h4><a href="#">Кредитная карта с целым годом без процентов</a></h4>
@@ -465,7 +469,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-3">
                     <div class="product-card" id="card2">
                         <div class="product-thumb">
-                            <a href="#"><img src="img/creditka2.png" alt=""></a>
+                            <a href="#"><img src="http://194.67.116.171/img/creditka2.png" alt=""></a>
                         </div>
                         <div class="product-details">
                             <h4><a href="#">Кредит наличными</a></h4>
@@ -489,15 +493,15 @@
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-3">
                     <div class="product-card"  id="card3">
                         <div class="product-thumb">
-                            <a href="#"><img src="img/creditka3.png" alt=""></a>
+                            <a href="#"><img src="http://194.67.116.171/img/creditka3.png" alt=""></a>
                         </div>
                         <div class="product-details">
                             <h4><a href="#">Кредит "На исполнение мечты"</a></h4>
                             <p>Солидное кредитное предложение для солидных людей!
-                                Кредит на сумму до 10 млн. рублей с 9% годовых: только для акул бизнеса.</br>
-                                Требования к получению:</br>
-                                1.Нужно заполнить все дополнительные данные в личном кабинете</br>
-                                2.Возраст 21-50 лет</br>
+                                Кредит на сумму до 10 млн. рублей с 9% годовых: только для акул бизнеса.<br/>
+                                Требования к получению:<br/>
+                                1.Нужно заполнить все дополнительные данные в личном кабинете<br/>
+                                2.Возраст 21-50 лет<br/>
                                 Одобрение в день обращения. Оформите заявку и получите деньги на следующий день, не выходя из дома!
                             </p>
                             <div class="product-bottom-details d-flex justify-content-between">
@@ -634,13 +638,12 @@
 
 
 
-<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="http://194.67.116.171/js/jquery_v3.6.0.js"></script>
+<script src="http://194.67.116.171/js/bootstrap.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="js/script.js"></script>
+<script src="http://194.67.116.171/js/script.js"></script>
 <!--<script src="js/java.js"></script> -->
-<script src="js/calculator-form.js"></script>
-<script src="js/login.js"></script>
+<script src="http://194.67.116.171/js/calculator-form.js"></script>
+<script src="http://194.67.116.171/js/new_login.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+    <title>Формирование ответа</title>
     <head>
         <meta charset="UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -47,7 +48,7 @@
 				
                     <div class="col-xl-6 col-lg-7 col-md-9 col-sm-10 col-xs-10">
 						<form action="" name="form" method="POST" onsubmit="return sendform();">
-							<h5 class="text-center"><label>Сумма кредита: <input type="text" id="summ_kr" disabled> рублей</label><br/></h5>
+							<h5 class="text-center"><label>Сумма кредита: {{$sum}} <input type="text" id="summ_kr" disabled> рублей</label><br/></h5>
 							<h5 class="text-center"><label>Срок: <input type="text" id="srok_kr" disabled> месяца(ев)</label><br/></h5>
 							<h5 class="text-center"><label>Ежемесячный платёж: <input type="text" id="ezh_pl" disabled> руб/месяц</label><br/></h5>
 							<h5 class="text-center"><label>Все документы прошли проверку: <input type="text" id="corr_doc" disabled></label><br/></h5>
@@ -58,7 +59,7 @@
 					</div>
 					
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h5 style="visibility: hidden" class="text-center" id="rat_cl">Рейтинг клиента: <input type="text" id="rating" value="2" disabled><br/><br/></h5>
+						<h5 style="visibility: hidden" class="text-center" id="rat_cl">Рейтинг клиента: {{$rating}}<input type="text" id="rating" value="2" disabled><br/><br/></h5>
 					</div>
 											
 					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -74,7 +75,7 @@
 					</div>
 					
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">	
-						<h5 style="visibility: hidden" id="new_predl">НОВОЕ ПРЕДЛОЖЕНИЕ<h5>
+						<h5 style="visibility: hidden" id="new_predl">НОВОЕ ПРЕДЛОЖЕНИЕ</h5>
 						<table style="visibility: hidden" id="table" class="table table-bordered">
 							<tbody>
 								<tr>

@@ -29,7 +29,7 @@
     <div class="row d-flex">
         <div class="bg-black upper-back d-flex d-lg-none"></div>
         <div class="col-12 col-lg-4 px-lg-0 text-center text-lg-start px-0 px-lg-2 mt-lg-4">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn back-button px-0 px-lg-2 py-3 py-lg-0">
+            <a href="http://194.67.116.171/" class="btn back-button px-0 px-lg-2 py-3 py-lg-0">
                 <img class="d-none d-lg-inline img-arrows" src="http://194.67.116.171/img/arrows_to_left.png" alt="arrow_to_left">
                 На главную
             </a>
@@ -60,8 +60,8 @@
                         <div class="error text-end second-name"></div>
                     </div>
                     <div class="passport-wrapper mt-3">
-                        <label class="" for="userPassport">Пасспорт</label><br/>
-                        <input class="col-12 form-control data" id="userPassport" type="text" name="userPassport" placeholder="Введите ваш пасспорт(серия,номер)">
+                        <label class="" for="userPassport">Паспорт</label><br/>
+                        <input class="col-12 form-control data" id="userPassport" type="text" name="userPassport" placeholder="Введите ваш паспорт(серия,номер)">
                         <div class="error text-end passport"></div>
                     </div>
                     <div class="itn-wrapper mt-3">

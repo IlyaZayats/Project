@@ -248,21 +248,18 @@ $(document).ready(function (){
                  $(".modal-button").html(modal_data[2]);
 
                  modal.show();
-                 window.history.pushState({ "isActive": true }, "", "#modal");
 
+                 errors = Array(errors_fields.length+1).fill(true);
+                 start_errors = Array(errors_fields.length).fill(true);
                  $('.modal-button').click(event => {
                      if(result['type']===0){
                          location.href = 'http://194.67.116.171/';
                      } else {
-                         window.history.pushState({ "isActive": false }, "", "registration");
                          modal.hide();
                      }
                  });
 
-                 modal.addEventListener('hide.bs.modal', event => {
-                     errors = Array(errors_fields.length+1).fill(true);
-                     start_errors = Array(errors_fields.length).fill(true);
-                 });
+
 
             })
             .catch((error) => {

@@ -15,46 +15,32 @@ body {
   background: linear-gradient(to left, white, rgba(246, 255, 0, 0.438),white );
 }
 
-h1, h3{
+h1, h4{
   font-weight: bold;
 }
 
-.btn-get {
+.btn-style {
   background: yellow;
   border-radius: 25px;
-  font-size: 18px;
-  height: 40px;
-  font-weight: bold;
-  color:black;
+  font-size: 24px;
 }
 
 br {
   font-size: 24px;
 }
 
-#outputSolvency{
-  color: black;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.confirm-button{
-  background-color: yellow;
-
-}
-
-.modal-button{
-  background-color: yellow;
-}
-
-.label-solvency {
-  position: relative;
-  font-size: 24px;
+#sendAnswer{
+	font-weight: bold;
+	background: yellow;
+	border-radius: 25px;
+	height: 50px;
+	width: 240px;
+	margin-top: 30px;
+	margin-bottom: 40px;
 }
 
 .error{
-  color: red;
-  font-size:14px;
-  font-weight: bold;
+	color: red;
+    font-size:14px;
+    font-weight: bold;
 }
