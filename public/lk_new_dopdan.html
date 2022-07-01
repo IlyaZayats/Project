@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/lk_new_dopdan.css"/>
+        <link rel="stylesheet" href="css/nav-style.css"/>
+    </head>
+    <body>
+        <!-- - - - - - - - - - - - - - - N A V B A R- - - - - - - - - - - - - - - --->
+        <nav class="navbar navbar-expand-lg" style="background-color: black;"></nav>	
+        <div class="p-3 mb-2 bg-dark">
+            <ul class="nav justify-content-end">
+            <li class="nav-item col-12 col-md-11">
+            <a class="nav-link text-white" href="index.html">Главная</a>
+            </li>
+            <li class="nav-item col-12 col-md-1">
+            <button type="button" class="btn btn-style" onclick="location.href='http://194.67.116.171/leave'">Выйти</button>
+            </li>
+            </ul>
+        </div>
+        <!-- - - - - - - - - - - - - - - N A V B A R- - - - - - - - - - - - - - - --->
+        <div class = "container-fluid">
+            <div class="row">
+                <div class="col-md-12 mt-4 mb-3 text-center title_lk">
+                    <h1 class = "py-3">ЛИЧНЫЙ КАБИНЕТ</h1>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 mb-5 text-center">
+                <h3>ДОПОЛНИТЕЛЬНЫЕ ДАННЫЕ</h3>
+            </div>
+
+            <div class = "row py-4 check_lk position-relative">
+                <div class = "col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 py-3"></div>
+                <div class = "col-8 col-sm-8 col-md-3 col-lg-3 col-xl-3 py-3">
+                    <input disabled type="checkbox" id="checkbox-id-1" name="check-1" checked />
+                    <label for="checkbox-id-1">Паспорт</label> 
+                    </br>
+                    <!-- номер паспорта пользователя                                                   ДЛЯ BACK-END <3 -->
+                    </br>
+                    <div class="row position-relative"> 
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
+                            <button id="add-button-1" class="add-button">Добавить</button> 
+                            <div id="wrapper_passport">
+                                <div class="modal_content">
+                                    <div class="knopkaX" id="close_1"></div>
+                                        <form id="main_passport" name="main_passport" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                            Введите номер своего <br/> СНИЛС: <br/> <br/>
+                                            <p id = "sms_passport" style="font-size: 13px;" class = "text-center"></p>
+                                            <input id="passport" class = "passport" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="10" 
+                                                placeholder = " _ _ _ _ - _ _ _ _ _ _ " class="passport"/>
+                                            <button name="subbutton" id="submit_button_1">Подтвердить</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div></br>
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
+                            <button id="delete-button-1" class="delete-button">Удалить</button>
+                            <div id="wrapper_passport_delete">
+                                <div class="modal_content">
+                                    <div class="knopkaX" id="close_1_delete"></div>
+                                        <form id="main_passport" name="main_passport" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                            <p><b>Вы уверены, что хотите удалить данные?</b></p>
+                                            <button name="subbutton" id="yes_passport">Да, удалить</button>
+                                            <button name="subbutton" id="no_passport">ОТМЕНА</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div></br> 
+                </div>
+                <div class = "col-4 col-sm-4 col-md-2 col-lg-1 col-xl-1 py-3"></div>
+                <div class = "col-8 col-sm-8 col-md-4 col-lg-5 col-xl-5 py-3">
+                    <input disabled type="checkbox" id="checkbox-id-2" name="check-2" checked  />
+                    <label for="checkbox-id-2">ИНН</label> 
+                    </br>
+                    <!-- номер ИНН пользователя                                                        ДЛЯ BACK-END <3 -->
+                </div>
+                <div class = "col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 py-3"></div>
+                <div class = "col-8 col-sm-8 col-md-3 col-lg-3 col-xl-3 py-3">
+                    <input disabled type="checkbox" id="checkbox-id-3" name="check-3" />
+                    <label for="checkbox-id-3">2-НДФЛ</label> 
+                    </br>
+                    <!-- тут прикрепляются файлы                                                       ДЛЯ BACK-END <3 -->                                    
+                    </br>            
+                    <div class="row position-relative"> 
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
+                            <button id="add-button-3" class="add-button">Добавить</button>
+                            <div id="wrapper_ndfl">
+                                <div class="modal_content">
+                                    <div class="knopkaX" id="close_3"></div>
+                                        <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                            <p id = "sms_ndfl" class = "text-center"></p>
+                                            <input id="ndfl_id" type="file" accept=".pdf,.png,.jpg" class="ndfl"/><br><br>
+                                            <b style = "color: red; font-size: 12px;">* документ должен быть в формате pdf, png или jpg!</b>
+                                            <button name="subbutton" id="submit_button_3">Подтвердить</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div></br>
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
+                            <button id="delete-button-3" class="delete-button">Удалить</button>
+                            <div id="wrapper_ndfl_delete">
+                                <div class="modal_content">
+                                    <div class="knopkaX" id="close_3_delete"></div>
+                                        <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                            <p><b>Вы уверены, что хотите удалить данные?</b></p>
+                                            <button name="subbutton" id="yes_ndfl">Да, удалить</button>
+                                            <button name="subbutton" id="no_ndfl">ОТМЕНА</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div></br>
+                    </div> 
+                </div>
+                <div class = "col-4 col-sm-4 col-md-2 col-lg-1 col-xl-1 py-3"></div>
+                <div class = "col-8 col-sm-8 col-md-4 col-lg-5 col-xl-5 py-3">
+                    <input disabled type="checkbox" id="checkbox-id-4" name="check-4" />
+                    <label for="checkbox-id-4">СНИЛС</label> 
+                    </br>
+                    <div id = "back-end-snils"></div>  
+                    <!-- снилс пользователя                                                            ДЛЯ BACK-END <3 -->                                    
+                    </br> 
+                    <div class="row position-relative"> 
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
+                            <button id="add-button-4" class="add-button">Добавить</button> 
+                            <div id="wrapper_snils">
+                                <div class="modal_content">
+                                    <div class="knopkaX" id="close_4"></div>
+                                        <form id="main_snils" name="main_snils" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                            Введите номер своего <br/> СНИЛС: <br/> <br/>
+                                            <p id = "sms_snils" style="font-size: 13px;" class = "text-center"></p>
+                                            <input id="snils" class = "snils" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="11" 
+                                                placeholder = " _ _ _ - _ _ _ - _ _ _  _ _ " class="snils"/>
+                                            <button name="subbutton" id="submit_button_4">Подтвердить</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div></br>
+                    </div>
+                </div>    
+                <div class = "col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 py-3"></div>
+                <div class = "col-8 col-sm-8 col-md-3 col-lg-3 col-xl-3 py-3">
+                    <input disabled type="checkbox" id="checkbox-id-5" name="check-5" />
+                    <label for="checkbox-id-5">Справка о судимости</label>
+                    </br>
+                    <!-- тут приклепляется справка о судимости                                         ДЛЯ BACK-END <3 -->
+                    </br>           
+                    <div class="row position-relative"> 
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
+                            <button id="add-button-5" class="add-button">Добавить</button>
+                            <div id="wrapper_criminal">
+                                <div class="modal_content">
+                                    <div class="knopkaX" id="close_5"></div>
+                                        <form id="main_criminal" name="main_criminal" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                            <p id = "sms_criminal" class = "text-center"></p>
+                                            <input id="criminal_id" type="file" accept=".pdf,.png,.jpg" class="criminal_record"/><br><br>
+                                            <b style = "color: red; font-size: 10px;">* документ должен быть в формате pdf, png или jpg!</b>
+                                            <button name="subbutton" id="submit_button_5">Подтвердить</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div></br>
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
+                            <button id="delete-button-5" class="delete-button">Удалить</button>
+                            <div id="wrapper_criminal_delete">
+                                <div class="modal_content">
+                                    <div class="knopkaX" id="close_5_delete"></div>
+                                        <form id="main_criminal" name="main_criminal" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                                            <p><b>Вы уверены, что хотите удалить данные?</b></p>
+                                            <button name="subbutton" id="yes_criminal">Да, удалить</button>
+                                            <button name="subbutton" id="no_criminal">ОТМЕНА</button>
+                                        </form>
+                                </div>
+                            </div>
+                        </div></br>
+                    </div>                                                         
+                </div>
+                <div class = "col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 py-3">
+                    <div class="lk_buttons">
+                        <button type="button" class="lk_but p-3" onclick="window.location.href='lk_add_guarantor.html'">
+                            ДОБАВИТЬ ПОРУЧИТЕЛЯ
+                        </button><br>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - - --->
+        <footer class="bg-dark text-center text-white">
+            <div class = "container-fluid">
+                <div class="container p-4">   
+                <section>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Контактная информация:</h5>
+                            +7-918-931-39-32
+                        </div>
+                        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Адрес:</h5>
+                                г. Краснодар, ул. Красная 32
+                        </div>
+                    </div>
+                </section>
+                </div>
+                <div class ="row">
+                    <div class="container-fluid text-center p-3" style="background-color: black;">
+                        © 2022. Tiunoff bank, официальный сайт.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - - --->
+
+        <script src="js/lk_dopdan_modal_snils.js"></script> 
+        <script src="js/lk_dopdan_modal_passport.js"></script> 
+        <script src="js/lk_dopdan_modal_criminal.js"></script> 
+        <script src="js/lk_dopdan_modal_ndfl.js"></script> 
+        
+    </body>
+</html>
