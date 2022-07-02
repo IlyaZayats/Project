@@ -2,6 +2,30 @@
 
 window.addEventListener("DOMContentLoaded", function(event){
 
+  function onClick_passport() {
+      if (document.getElementById("passport").value.length === 10){
+        document.querySelector('input[name="check-1"]').checked = true; //появляется галочка у "паспорт"
+        document.getElementById("add-button-1").style.display = "none";//пропадает кнопка "добавить" у "паспорт"
+        document.getElementById("delete-button-1").style.display = "block";// появляется кнопка "удалить" у "паспорт"
+      }
+      else document.getElementById("sms_passport").innerHTML = "* Вам необходимо ввести 10 цифр!";
+  }
+  
+  function fromClick_passport() {
+    document.querySelector('input[name="check-1"]').checked = false; //пропадает галочка у "паспорт"
+    document.getElementById("delete-button-1").style.display = "none";//пропадает кнопка "удалить" у "паспорт"
+    document.getElementById("add-button-1").style.display = "block";// появляется кнопка "добавить" у "паспорт"
+  }
+    
+  document.getElementById("submit_button_1").addEventListener("click", onClick_passport); // добавить данные паспорта
+  document.getElementById("yes_passport").addEventListener("click", fromClick_passport); // удалить данные паспорта
+  
+
+});
+
+/*
+window.addEventListener("DOMContentLoaded", function(event){
+
     let modal = {
         closeModal: ()=>{
           this.wrapper_passport.style.display = "none";
@@ -58,4 +82,4 @@ window.addEventListener("DOMContentLoaded", function(event){
     modal.submit_button_1.addEventListener("click", onClick_passport);
     modal.yes_passport.addEventListener("click", fromClick_passport);
     
-  }); 
+  }); */
