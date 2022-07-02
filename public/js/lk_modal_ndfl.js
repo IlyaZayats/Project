@@ -2,6 +2,29 @@
 
 window.addEventListener("DOMContentLoaded", function(event){
 
+  function onClick_ndfl() {
+    if (document.getElementById("ndfl_id").files.length) {
+      document.querySelector('input[name="check-3"]').checked = true; //появляется галочка у 2-ндфл
+      document.getElementById("add-button-3").style.display = "none";//пропадает кнопка "добавить" у 2-ндфл
+      document.getElementById("delete-button-3").style.display = "block";// появляется кнопка "удалить" у 2-ндфл
+    }
+    else document.getElementById("sms_ndfl").innerHTML = "ВЫ НЕ ДОБАВИЛИ ФАЙЛ!";
+  }
+
+  function fromClick_ndfl() {
+    document.querySelector('input[name="check-3"]').checked = false; //пропадает галочка у 2-ндфл
+    document.getElementById("delete-button-3").style.display = "none";//пропадает кнопка "удалить" у 2-ндфл
+    document.getElementById("add-button-3").style.display = "block";// появляется кнопка "добавить" у 2-ндфл
+  }
+   
+  document.getElementById("submit_button_3").addEventListener("click", onClick_ndfl);
+  document.getElementById("yes_ndfl").addEventListener("click", fromClick_ndfl);
+
+});
+
+/*
+window.addEventListener("DOMContentLoaded", function(event){
+
     let modal = {
         closeModal: ()=>{
           this.wrapper_ndfl.style.display = "none";
@@ -58,4 +81,4 @@ window.addEventListener("DOMContentLoaded", function(event){
     modal.submit_button_3.addEventListener("click", onClick_ndfl);
     modal.yes_ndfl.addEventListener("click", fromClick_ndfl);
     
-  }); 
+  }); */
