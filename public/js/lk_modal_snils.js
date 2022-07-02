@@ -2,6 +2,24 @@
 
 window.addEventListener("DOMContentLoaded", function(event){
 
+  function onClick_snils() { 
+    if ( document.getElementById("snils").value.length === 11){
+      document.querySelector('input[name="check-4"]').checked = true; // появляется галочка у снилс
+      document.getElementById("add-button-4").style.display = "none";// пропадает кнопка "добавить" 
+      document.getElementById("add-button-5").style.display = "block";// появляется доступ к кнопкe "добавить" у справки о судимости 
+      document.getElementById("add-button-3").style.display = "block";// и 2-ндфл
+    }
+    else document.getElementById("sms_snils").innerHTML = "* Вам необходимо ввести 11 цифр!";
+  }
+    
+  document.getElementById("submit_button_4").addEventListener("click", onClick_snils); // добавить данные паспорта
+
+
+});
+
+/*
+window.addEventListener("DOMContentLoaded", function(event){
+
     let modal = {
         closeModal: ()=>{
           this.wrapper_snils.style.display = "none";
@@ -39,6 +57,4 @@ window.addEventListener("DOMContentLoaded", function(event){
   let button_snils = modal.submit_button_1;
   button_snils.addEventListener("click", onClick_snils);
   
-}); 
-
-
+}); */
