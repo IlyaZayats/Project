@@ -30,6 +30,138 @@
             <div class="col-md-12 mt-3 mb-5 text-center">
                 <h3>ДОПОЛНИТЕЛЬНЫЕ ДАННЫЕ</h3>
             </div>
+            
+             <!--............................................... М О Д А Л Ь Н Ы Е  О К Н А ...............................................-->
+
+            <!-- М О Д А Л Ь Н О Е  О К Н О   ДОБАВЛЕНИЯ ПАСПОРТА -->
+            <div class="modal fade " id="PassportAdd" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Введите данные паспорта (серия и номер)</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input id = "passport" class="form-control" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" 
+                               maxlength="10" placeholder=" _ _ _ _ - _ _ _ _ _ _ ">
+                        <p id = "sms_passport" class = "mt-3"style="font-size: 15px;"></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="submit_button_1">Подтвердить</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- М О Д А Л Ь Н О Е  О К Н О   УДАЛЕНИЯ ПАСПОРТА -->
+            <div class="modal fade" id="PassportDelete" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Вы уверены, что хотите удалить данные?</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ОТМЕНА</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="yes_passport">Да, удалить</button>
+                    </div>
+                  </div>
+                </div>
+            </div>    
+
+            <!-- М О Д А Л Ь Н О Е  О К Н О   ДОБАВЛЕНИЯ СНИЛС -->
+            <div class="modal fade " id="SnilsAdd" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Введите номер своего СНИЛС</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input id = "snils" class="form-control" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" 
+                               maxlength="11" placeholder=" _ _ _ _ - _ _ _ _ _ _ ">
+                        <p id = "sms_snils" class = "mt-3"style="font-size: 15px;"></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="submit_button_4">Подтвердить</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- М О Д А Л Ь Н О Е  О К Н О   ДОБАВЛЕНИЯ СПРАВКИ О СУДИМОСТИ -->
+            <div class="modal fade " id="CriminalAdd" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">СПРАВКА О СУДИМОСТИ</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id = "sms_criminal" style="font-size: 15px;"></p>
+                        <input id="criminal_id" class="form-control" type="file" accept=".pdf,.png,.jpg">
+                        <b style = "color: red; font-size: 13px;">* документ должен быть в формате pdf, png или jpg!</b>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="submit_button_5">Подтвердить</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!-- М О Д А Л Ь Н О Е  О К Н О   УДАЛЕНИЯ СПРАВКИ О СУДИМОСТИ -->
+            <div class="modal fade" id="CriminalDelete" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Вы уверены, что хотите удалить данные?</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ОТМЕНА</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="yes_criminal">Да, удалить</button>
+                    </div>
+                  </div>
+                </div>
+            </div>    
+
+            <!-- М О Д А Л Ь Н О Е  О К Н О   ДОБАВЛЕНИЯ 2-НДФЛ -->
+            <div class="modal fade " id="NdflAdd" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">2-НДФЛ</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id = "sms_ndfl" style="font-size: 15px;"></p>
+                        <input id="ndfl_id" class="form-control" type="file" accept=".pdf,.png,.jpg">
+                        <b style = "color: red; font-size: 13px;">* документ должен быть в формате pdf, png или jpg!</b>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="submit_button_3">Подтвердить</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+            <!-- М О Д А Л Ь Н О Е  О К Н О   УДАЛЕНИЯ СПРАВКИ О СУДИМОСТИ -->
+            <div class="modal fade" id="NdflDelete" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Вы уверены, что хотите удалить данные?</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ОТМЕНА</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="yes_ndfl">Да, удалить</button>
+                    </div>
+                  </div>
+                </div>
+            </div>    
+
+        <!--............................................... М О Д А Л Ь Н Ы Е  О К Н А ...............................................-->
 
             <div class = "row py-4 check_lk position-relative">
                 <div class = "col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 py-3"></div>
@@ -41,32 +173,14 @@
                     </br>
                     <div class="row position-relative"> 
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="add-button-1" class="add-button">Добавить</button> 
-                            <div id="wrapper_passport">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_1"></div>
-                                        <form id="main_passport" name="main_passport" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            Введите номер своего <br/> СНИЛС: <br/> <br/>
-                                            <p id = "sms_passport" style="font-size: 13px;" class = "text-center"></p>
-                                            <input id="passport" class = "passport" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="10" 
-                                                placeholder = " _ _ _ _ - _ _ _ _ _ _ " class="passport"/>
-                                            <button name="subbutton" id="submit_button_1">Подтвердить</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="add-button-1" type="button" class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#PassportAdd">
+                                Добавить
+                            </button>
                         </div></br>
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="delete-button-1" class="delete-button">Удалить</button>
-                            <div id="wrapper_passport_delete">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_1_delete"></div>
-                                        <form id="main_passport" name="main_passport" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <p><b>Вы уверены, что хотите удалить данные?</b></p>
-                                            <button name="subbutton" id="yes_passport">Да, удалить</button>
-                                            <button name="subbutton" id="no_passport">ОТМЕНА</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="delete-button-1" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#PassportDelete">
+                                Удалить
+                            </button>
                         </div>
                     </div></br> 
                 </div>
@@ -86,31 +200,14 @@
                     </br>            
                     <div class="row position-relative"> 
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="add-button-3" class="add-button">Добавить</button>
-                            <div id="wrapper_ndfl">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_3"></div>
-                                        <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <p id = "sms_ndfl" class = "text-center"></p>
-                                            <input id="ndfl_id" type="file" accept=".pdf,.png,.jpg" class="ndfl"/><br><br>
-                                            <b style = "color: red; font-size: 12px;">* документ должен быть в формате pdf, png или jpg!</b>
-                                            <button name="subbutton" id="submit_button_3">Подтвердить</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="add-button-3" type="button" class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#NdflAdd">
+                                Добавить
+                            </button>
                         </div></br>
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="delete-button-3" class="delete-button">Удалить</button>
-                            <div id="wrapper_ndfl_delete">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_3_delete"></div>
-                                        <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <p><b>Вы уверены, что хотите удалить данные?</b></p>
-                                            <button name="subbutton" id="yes_ndfl">Да, удалить</button>
-                                            <button name="subbutton" id="no_ndfl">ОТМЕНА</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="delete-button-3" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#NdflDelete">
+                                Удалить
+                            </button>
                         </div></br>
                     </div> 
                 </div>
@@ -124,19 +221,9 @@
                     </br> 
                     <div class="row position-relative"> 
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="add-button-4" class="add-button">Добавить</button> 
-                            <div id="wrapper_snils">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_4"></div>
-                                        <form id="main_snils" name="main_snils" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            Введите номер своего <br/> СНИЛС: <br/> <br/>
-                                            <p id = "sms_snils" style="font-size: 13px;" class = "text-center"></p>
-                                            <input id="snils" class = "snils" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="11" 
-                                                placeholder = " _ _ _ - _ _ _ - _ _ _  _ _ " class="snils"/>
-                                            <button name="subbutton" id="submit_button_4">Подтвердить</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="add-button-4" type="button" class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#SnilsAdd">
+                                Добавить
+                            </button> 
                         </div></br>
                     </div>
                 </div>    
@@ -149,31 +236,14 @@
                     </br>           
                     <div class="row position-relative"> 
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="add-button-5" class="add-button">Добавить</button>
-                            <div id="wrapper_criminal">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_5"></div>
-                                        <form id="main_criminal" name="main_criminal" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <p id = "sms_criminal" class = "text-center"></p>
-                                            <input id="criminal_id" type="file" accept=".pdf,.png,.jpg" class="criminal_record"/><br><br>
-                                            <b style = "color: red; font-size: 10px;">* документ должен быть в формате pdf, png или jpg!</b>
-                                            <button name="subbutton" id="submit_button_5">Подтвердить</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="add-button-5" type="button" class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#CriminalAdd">
+                                Добавить
+                            </button>
                         </div></br>
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="delete-button-5" class="delete-button">Удалить</button>
-                            <div id="wrapper_criminal_delete">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_5_delete"></div>
-                                        <form id="main_criminal" name="main_criminal" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <p><b>Вы уверены, что хотите удалить данные?</b></p>
-                                            <button name="subbutton" id="yes_criminal">Да, удалить</button>
-                                            <button name="subbutton" id="no_criminal">ОТМЕНА</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="delete-button-5" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#CriminalDelete">
+                                Удалить
+                            </button>
                         </div></br>
                     </div>                                                         
                 </div>
