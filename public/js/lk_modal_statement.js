@@ -2,6 +2,23 @@
 
 window.addEventListener("DOMContentLoaded", function(event){
 
+  function onClick_statement() {
+    if (document.getElementById("statement_id").files.length) {
+      document.querySelector('input[name="check-2"]').checked = true; //появляется галочка у "заявлениие"
+      document.getElementById("add-button-2").style.display = "none";//пропадает кнопка "добавить" у "заявление"
+      document.getElementById("delete-button-2").style.display = "block";// появляется кнопка "удалить" у "заявление"
+    }
+    else document.getElementById("sms_statement").innerHTML = "ВЫ НЕ ДОБАВИЛИ ФАЙЛ!";
+  }
+  
+    document.getElementById("submit_button_2").addEventListener("click", onClick_statement);
+
+
+});
+
+/*
+window.addEventListener("DOMContentLoaded", function(event){
+
     let modal_statement = {
         closeModal_statement: ()=>{
           this.wrapper_statement.style.display = "none";
@@ -37,4 +54,4 @@ window.addEventListener("DOMContentLoaded", function(event){
     let button_statement = modal_statement.submit_button_2;
     button_statement.addEventListener("click", onClick_statement);
     
-  }); 
+  }); */
