@@ -1,5 +1,28 @@
 /*  M O D A L   W I N D O W   F O R   C R I M I N A L   R E C O R D   I N F O R M A T I O N  */
 
+window.addEventListener("DOMContentLoaded", function(event){
+
+  function onClick_criminal() {
+    if (document.getElementById("criminal_id").files.length) {
+      document.querySelector('input[name="check-5"]').checked = true; //появляется галочка у справки о судимости
+      document.getElementById("add-button-5").style.display = "none";//пропадает кнопка "добавить" у справки о судимости
+      document.getElementById("delete-button-5").style.display = "block";// появляется кнопка "удалить" у справки о судимости
+    }
+    else document.getElementById("sms_criminal").innerHTML = "ВЫ НЕ ДОБАВИЛИ ФАЙЛ!";
+  }
+
+  function fromClick_criminal() {
+    document.querySelector('input[name="check-5"]').checked = false; // пропадает галочка у справки о судимости
+    document.getElementById("delete-button-5").style.display = "none";//пропадает кнопка "удалить" у справки о судимости
+    document.getElementById("add-button-5").style.display = "block";// появляется кнопка "добавить" у справки о судимости
+  }
+
+  document.getElementById("submit_button_5").addEventListener("click", onClick_criminal);
+  document.getElementById("yes_criminal").addEventListener("click", fromClick_criminal);
+
+});
+
+/*
   window.addEventListener("DOMContentLoaded", function(event){
 
     let modal = {
@@ -59,4 +82,4 @@
     modal.submit_button_2.addEventListener("click", onClick_criminal);
     modal.yes_criminal.addEventListener("click", fromClick_criminal);
     
-  }); 
+  }); */

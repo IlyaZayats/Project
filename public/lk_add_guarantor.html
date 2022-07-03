@@ -28,19 +28,50 @@
                     <h1 class = "py-3">ЛИЧНЫЙ КАБИНЕТ</h1>
                 </div>
             </div>
-            <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title response-title" id="responseModalLabel"></h5>
-                        </div>
-                        <div class="modal-body response-body"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn modal-button w-100"></button>
-                        </div>
-                    </div>
+            
+        <!--............................................... М О Д А Л Ь Н Ы Е  О К Н А ...............................................-->
+
+        <!-- М О Д А Л Ь Н О Е  О К Н О   ДОБАВЛЕНИЯ 2-НДФЛ -->
+        <div class="modal fade " id="NndflAdd" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">2-НДФЛ</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <p id = "sms_ndfl" style="font-size: 15px;"></p>
+                    <input id="ndfl_id" class="form-control" type="file" accept=".pdf,.png,.jpg">
+                    <b style = "color: red; font-size: 13px;">* документ должен быть в формате pdf, png или jpg!</b>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="submit_button_3">Подтвердить</button>
+                </div>
+              </div>
             </div>
+        </div>
+
+        <!-- М О Д А Л Ь Н О Е  О К Н О   ДОБАВЛЕНИЯ ЗАЯВЛЕНИЯ -->
+        <div class="modal fade " id="StatementAdd" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Заявление</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id = "sms_statement" style="font-size: 15px;"></p>
+                    <input id="statement_id" class="form-control" type="file" accept=".pdf,.png,.jpg">
+                    <b style = "color: red; font-size: 13px;">* документ должен быть в формате pdf, png или jpg!</b>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="submit_button_2">Подтвердить</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!--............................................... М О Д А Л Ь Н Ы Е  О К Н А ...............................................-->
 
             <div class="row d-flex">
             </div>
@@ -90,21 +121,14 @@
                     </br>            
                     <div class="row position-relative justify-content-center"> 
                         <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="add-button-3" class="add-button">Добавить</button>
-                            <div id="wrapper_ndfl">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_3"></div>
-                                        <form id="main_ndfl" name="main_ndfl" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <p id = "sms_ndfl" class = "text-center"></p>
-                                            <input id="ndfl_id" type="file" accept=".pdf,.png,.jpg" class="ndfl"/><br><br>
-                                            <b style = "color: red; font-size: 13px;">* документ должен быть в формате pdf, png или jpg!</b>
-                                            <button name="subbutton" id="submit_button_3" class = "text-center my-2">Подтвердить</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="add-button-3" type="button" class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#NndflAdd">
+                                Добавить
+                            </button>
                         </div></br>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="delete-button-3" class="delete-button">Удалить</button>
+                            <button id="delete-button-3" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal">
+                                Удалить
+                            </button>
                         </div></br>
                     </div> 
                 </div>          
@@ -116,21 +140,14 @@
                         </br>            
                     <div class="row position-relative justify-content-center"> 
                         <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="add-button-2" class="add-button">Добавить</button>
-                            <div id="wrapper_statement">
-                                <div class="modal_content">
-                                    <div class="knopkaX" id="close_2"></div>
-                                        <form id="main_statement" name="main_statement" method="POST" onsubmit="return false;" accept-charset="UTF-8">
-                                            <p id = "sms_statement" class = "text-center"></p>
-                                            <input id="statement_id" type="file" accept=".pdf,.png,.jpg" class="statement"/><br><br>
-                                            <b style = "color: red; font-size: 13px;">* документ должен быть в формате pdf, png или jpg!</b>
-                                            <button name="subbutton" id="submit_button_2" class = "text-center my-2">Подтвердить</button>
-                                        </form>
-                                </div>
-                            </div>
+                            <button id="add-button-2" type="button" class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#StatementAdd">
+                                Добавить
+                            </button>
                         </div></br>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="delete-button-2" class="delete-button">Удалить</button>
+                            <button id="delete-button-2" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal">
+                                Удалить
+                            </button>
                         </div></br>
                     </div>   
                 </div>
