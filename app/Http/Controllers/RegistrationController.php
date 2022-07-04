@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
-
 class RegistrationController extends Controller
 {
     public function registration(Request $request){

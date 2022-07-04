@@ -184,7 +184,10 @@ class LoanOfficerController extends Controller
             $request->validate([
                 'text' => ['required', 'regex:/^[0-9a-zA-Z-_а-яА-Я]+$/']
             ]);
-            $code = DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['text' => $request->input('text')]);
+            //$id_msg=DB::table('Messages_rec')->where('receiver', DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login'));
+            //$code = DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['text' => $request->input('text')]);
+            date_default_timezone_set('Europe/Moscow');
+            $code = DB::table('Messages')->where('id_message', $request->session()->get('id_msg'))->update(['text' => $request->input('text'), 'send_date' => date('Y-m-d')]);
             return ['msg' => 1 , 'code'=>$code];
         }
         return ['msg' => -1, 'code' => -1];

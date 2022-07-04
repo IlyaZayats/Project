@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\UserController;
 
 
 class AuthController extends Controller
@@ -16,6 +17,10 @@ class AuthController extends Controller
     function isLoanOfficer($request): bool
     {
         return $request->session()->has('accountType') && $request->session()->get('accountType')==2;
+    }
+    function isUser($request): bool
+    {
+        return $request->session()->has('accountType') && $request->session()->get('accountType')==1;
     }
 
     public function goToMain(){
@@ -48,8 +53,29 @@ class AuthController extends Controller
         return view('cabinet_clerk');
     }
 
-    public function cabinet_user(){
-        return view('cabinet_user');
+    public function cabinet_user(Request $request){
+        $ITN = DB::table('Auth_data')->where('login', $request->session()->get('login'))->value('ITN');
+        session(['ITN' => $ITN]);
+        $msg = UserController::getNotifications($request);
+        $name = DB::table('Registered')->where('ITN', $ITN)->value('first_name');
+        $rec = UserController::getMesRec($request);
+        $full_msg = array();
+        $amount = 0;
+        $i=0;
+        foreach ($rec as $item){
+            $full_msg[$i] = $msg[$i]->merge($item);
+            if($item->viewed == 0){
+                $amount++;
+            }
+            $full_msg[$i] = $full_msg[$i]->all();
+            $i++;
+        }
+//        foreach ($full_msg as $item){
+//            $full_msg[$i] = collect($item)->all();
+//            $i++;
+//        }
+        //return view ('test', ['bruh'=>$full_msg]);
+        return view('cabinet_user', ['msg' => $full_msg, 'name' => $name, 'amount' => $amount]);
     }
 
     public function cabinet_loan_officer(Request $request){
@@ -81,7 +107,7 @@ class AuthController extends Controller
 
             switch ($request->session()->get('accountType')){
                 case 1:{
-                    return $this->cabinet_user();
+                    return $this->cabinet_user($request);
                 }
                 case 2:{
                     return $this->cabinet_loan_officer($request);
@@ -102,6 +128,9 @@ class AuthController extends Controller
         if($this->isLoanOfficer($request)) {
             //DB::update('UPDATE Application SET login_worker="login_worker" WHERE id_app=?', [$request->session()->get('id')]);
             DB::table('Application')->where('id_app', [$request->session()->get('id')])->update(['login_worker' => "login_worker"]);
+            if(DB::table('Application')->where('id_app', [$request->session()->get('id')])->value('valid')==1) {
+                DB::table('Messages')->where('id_message', [$request->session()->get('id_msg')])->update(['sender' => DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login')]);
+            }
         }
         $request->session()->flush();
         return redirect()->route('main_route');

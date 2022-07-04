@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoanOfficerController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -167,3 +168,20 @@ Route::get('/drop_application', function (Request $request){
     }
     return redirect()->route('main_route');
 });
+
+//User
+
+Route::get('/cabinet/notifications', [UserController::class, 'getNotifications']);
+
+Route::get('/cabinet/additional_data', [UserController::class, 'getAdditional']);
+
+Route::post('/cabinet/notifications', [UserController::class, 'messageControl']);
+
+Route::post('/cabinet/application/send', [UserController::class, 'sendApplication']);
+
+Route::post('/cabinet/additional_data/add', [UserController::class, 'addAdditional']);
+
+Route::post('/cabinet/additional_data/delete', [UserController::class, 'deleteAdditional']);
+
+
+
