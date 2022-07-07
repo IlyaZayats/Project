@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/answer.css"/>
-        <link rel="stylesheet" href="css/nav-style.css"/>
-        <script src="js/answer.js"></script>
+            <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> -->
+        
+        <title>Отправка ответа клиенту</title>
+        <meta charset='utf-8'/>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+        <link href="http://194.67.116.171/css/bootstrap.css" rel="stylesheet">
+        <link rel="shortcut icon" href="http://194.67.116.171/img/tiunoff.png" type="image/png">
+        <link rel="stylesheet" href="http://194.67.116.171/css/answer.css"/>
+        <link rel="stylesheet" href="http://194.67.116.171/css/nav-style.css"/>
     </head>
     <body>
       
@@ -25,19 +30,9 @@
             </li>
             </ul>
         </div>
-
-    
-          
-            
-    
-
-          
-    
-    
-  
       
     
-        <!-- - - - - - - - - - - - - - - - - T E H _ S U P P O R T - - - - - - - - - - - - - - - - - - - -->
+        <!-- - - - - - - - - - - - - - - - - - - A N S W E R - - - - - - - - - - - - - - - - - - - - - - -->
         
         
         <div class = "container-fluid">
@@ -51,6 +46,7 @@
             </div>
             
             <form class="position-relative top-0 start-50 translate-middle-x" method="POST" onsubmit="return false;" accept-charset="UTF-8">
+                @csrf
                 <div class="mb-3">
                     <textarea id="answer" class="form-control w-75 p-3" rows="10" placeholder = "текст ответа" required></textarea>
                 </div>
@@ -82,4 +78,8 @@
             </div>
         </footer> 
     </body>
+    <script src="http://194.67.116.171/js/jquery_v3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="http://194.67.116.171/js/bootstrap.bundle.js"></script>
+    <script src="http://194.67.116.171/js/clerk/answer.js"></script>
 </html>
