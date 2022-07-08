@@ -115,8 +115,15 @@ input:checked + label:before {
   color: #D72C2C;
 }
 
-/* кнопки "добавить" и "удалить" до взаимодействия с модальными окнами */
+.output{
+  font-size: 20px;
+  font-weight: bold;
+}
 
+/* кнопки "добавить" и "удалить" до взаимодействия с модальными окнами */
+/*БОЛЬШЕ ТАК НЕ ДЕЛАТЬ!*/
+
+/*
 #add-button-1 {
   display: none;
 }
@@ -136,6 +143,7 @@ input:checked + label:before {
 #add-button-5 {
   display: none;
 }
+*/
 
 /* "вы не добавили файл!" */
 #sms_ndfl,

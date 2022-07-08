@@ -61,23 +61,23 @@
                             <tbody>
                             <tr>
                                 <td>СНИЛС</td>
-                                <td>{{$INIPA}}</td>
+                                <td>@if(!empty($INIPA)){{$INIPA}}@else - @endif</td>
                             </tr>
                             <tr>
                                 <td>СПРАВКА О СУДИМОСТИ</td>
-                                <td><a href = "{{$criminal_record}}">Справка о судимости</a></td>
+                                <td><a href = "http://194.67.116.171/files/{{$criminal_record}}">Справка о судимости</a></td>
                             </tr>
                             <tr>
                                 <td>2-НДФЛ</td>
-                                <td><a href = "{{$income_statement}}">2-НДФЛ</a></td>
+                                <td><a href = "http://194.67.116.171/files/{{$income_statement}}">2-НДФЛ</a></td>
                             </tr>
                             <tr>
                                 <td>ПАСПОРТ</td>
-                                <td>{{$passport_data}}</td>
+                                <td>@if(!empty($passport_data)){{$passport_data}}@else - @endif</td>
                             </tr>
                             <tr>
                                 <td>ИНН</td>
-                                <td>{{$ITN}}</td>
+                                <td>@if(!empty($ITN)){{$ITN}} @else - @endif</td>
                             </tr>
                             </tbody>
                         </table>

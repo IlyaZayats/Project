@@ -46,6 +46,11 @@ body {
     color: grey;
 }
 
+.msg-extra-bar{
+    font-size: 14px;
+    color: grey;
+}
+
 .msg-date{
     font-size: 12px;
     color:grey;

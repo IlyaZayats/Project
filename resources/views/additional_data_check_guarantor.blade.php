@@ -48,6 +48,7 @@
     </div>
     <br/>
 
+    @if(!empty($ITN))
     <section class="credits" id="credits">
         <div class="proverka_dannih">
             <div class="container">
@@ -77,11 +78,11 @@
                             </tr>
                             <tr>
                                 <td>2-НДФЛ</td>
-                                <td><a href = "{{$income_statement}}">2-НДФЛ</a></td>
+                                <td><a href = "http://194.67.116.171/files/{{$income_statement}}">2-НДФЛ</a></td>
                             </tr>
                             <tr>
                                 <td>2-НДФЛ</td>
-                                <td><a href = "{{$statement}}">ЗАЯВЛЕНИЕ</a></td>
+                                <td><a href = "http://194.67.116.171/files/{{$statement}}">ЗАЯВЛЕНИЕ</a></td>
                             </tr>
                             <tr>
                                 <td>ПАСПОРТ</td>
@@ -127,6 +128,10 @@
         </div>
     </section>
 </div>
+
+@else
+    <h3 style="font-weight: bold">У ДАННОГО ПОЛЬЗОВАТЕЛЯ НЕТ ПОРУЧИТЕЛЯ</h3>
+@endif
 
 <br/><br/>
 

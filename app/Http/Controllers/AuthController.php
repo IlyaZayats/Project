@@ -56,20 +56,15 @@ class AuthController extends Controller
     public function cabinet_user(Request $request){
         $ITN = DB::table('Auth_data')->where('login', $request->session()->get('login'))->value('ITN');
         session(['ITN' => $ITN]);
-        $msg = UserController::getNotifications($request);
-        $name = DB::table('Registered')->where('ITN', $ITN)->value('first_name');
-        $rec = UserController::getMesRec($request);
-        $full_msg = array();
-        $amount = 0;
-        $i=0;
-        foreach ($rec as $item){
-            $full_msg[$i] = $msg[$i]->merge($item);
-            if($item->viewed == 0){
-                $amount++;
-            }
-            $full_msg[$i] = $full_msg[$i]->all();
-            $i++;
-        }
+        //$name = DB::table('Registered')->where('ITN', $ITN)->value('first_name');
+        $name = UserController::getName($request);
+        $full_msg = UserController::getFullMsg($request);
+        $amount = UserController::getAmount($full_msg);
+//        foreach ($full_msg as $item){
+//            if($item['viewed'] == 0){
+//                $amount++;
+//            }
+//        }
 //        foreach ($full_msg as $item){
 //            $full_msg[$i] = collect($item)->all();
 //            $i++;

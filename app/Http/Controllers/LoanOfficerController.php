@@ -188,6 +188,11 @@ class LoanOfficerController extends Controller
             //$code = DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['text' => $request->input('text')]);
             date_default_timezone_set('Europe/Moscow');
             $code = DB::table('Messages')->where('id_message', $request->session()->get('id_msg'))->update(['text' => $request->input('text'), 'send_date' => date('Y-m-d')]);
+            //$login = DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login');
+//            $code2=-1;
+//            if(DB::table('Messages_rec')->where('id_message', $request->session()->get('id_msg'))->doesntExist()) {
+//                $code2 = DB::table('Messages_rec')->insert(['id_message' => $request->session()->get('id_msg'), 'receiver' => $login])
+//            }
             return ['msg' => 1 , 'code'=>$code];
         }
         return ['msg' => -1, 'code' => -1];

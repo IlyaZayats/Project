@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,9 @@ Route::get('/cabinet', [AuthController::class, 'cabinet'])->name('cabinet_route'
 //Application
 Route::get('/application/{itn}/{id}', function ($itn, $id, Request $request){
     if(isLoanOfficer($request)){
-            session(['ITN'=>$itn, 'id'=>$id]);
+            $id_message = DB::table('Application')->where('id_app', $id)->value('id_message');
+            session(['ITN'=>$itn, 'id'=>$id, 'id_msg' => $id_message]);
+            DB::table('Messages')->where('id_message', $id_message)->update(['sender' => $request->session()->get('login')]);
             //DB::select('SELECT * FROM Application WHERE login_worker=?', [$request->session()->get('login')])
             //DB::update('UPDATE Application SET in_work=1 WHERE id_app=?', [$id]);
             DB::table('Application')->where('id_app', $id)->update(['login_worker' => $request->session()->get('login')]);
@@ -105,7 +108,7 @@ Route::get('/additional_data_check', function (Request $request){
        if(!empty(DB::table('Additional_data')->where('ITN', $request->session()->get('ITN'))->value('guarantor'))){
            $guarantor_ITN = DB::table('Additional_data')->where('ITN', $request->session()->get('ITN'))->value('guarantor');
        }
-       return view('additional_data_check', ['INIPA' => $data->INIPA, 'criminal_record' => $data->criminal_record, 'income_statement' => $data->income_statement, 'ITN' => $data->ITN, 'passport_data'=>$pass_data, 'count' => $count, 'id'=>$request->session()->get('id'), 'guarantor' => $guarantor_ITN]);
+       return view('additional_data_check', ['INIPA' => $data->INIPA, 'criminal_record' => $data->criminal_record, 'income_statement' => $data->income_statement, 'ITN' => $data->ITN, 'passport_data'=>$pass_data, 'count' => $count, 'id'=>$request->session()->get('id'), 'guarantor' => $guarantor_ITN, 'statement' => $data->statement]);
    } else {
        return redirect()->route('main_route');
    }
@@ -115,7 +118,8 @@ Route::get('/additional_data_check_guarantor', function (Request $request){
     if(isLoanOfficer($request) && !empty(DB::table('Additional_data')->where('ITN', $request->session()->get('ITN'))->value('guarantor'))){
         $guarantor_ITN = DB::table('Additional_data')->where('ITN', $request->session()->get('ITN'))->value('guarantor');
         $data = current(collect(DB::table('Guarantor')->where('ITN', $guarantor_ITN)->get())->all());
-        return view('additional_data_check_guarantor', ['INIPA' => $data->INIPA, 'income_statement' => $data->income_statement, 'ITN' => $data->ITN, 'passport_data'=>$data->passport_data, 'id'=>$request->session()->get('id'), 'last_name' => $data->last_name, 'first_name' => $data->first_name, 'middle_name' => $data->middle_name, 'statement' => $data->statement]);
+        $statement = DB::table('Additional_data')->where('ITN', $request->session()->get('ITN'))->value('statement');
+        return view('additional_data_check_guarantor', ['INIPA' => $data->INIPA, 'income_statement' => $data->income_statement, 'ITN' => $data->ITN, 'passport_data'=>$data->passport_data, 'id'=>$request->session()->get('id'), 'last_name' => $data->last_name, 'first_name' => $data->first_name, 'middle_name' => $data->middle_name, 'statement' => $statement]);
     } else {
         return redirect()->route('main_route');
     }
@@ -171,17 +175,62 @@ Route::get('/drop_application', function (Request $request){
 
 //User
 
-Route::get('/cabinet/notifications', [UserController::class, 'getNotifications']);
-
 Route::get('/cabinet/additional_data', [UserController::class, 'getAdditional']);
 
 Route::post('/cabinet/notifications', [UserController::class, 'messageControl']);
 
-Route::post('/cabinet/application/send', [UserController::class, 'sendApplication']);
+Route::post('/application/send', [UserController::class, 'sendApplication']); //-
 
 Route::post('/cabinet/additional_data/add', [UserController::class, 'addAdditional']);
 
+Route::post('/cabinet/additional_data/addFile', [UserController::class, 'addAdditionalFile']);
+
 Route::post('/cabinet/additional_data/delete', [UserController::class, 'deleteAdditional']);
+
+Route::get('/cabinet/statuses', [UserController::class, 'getStatuses']); //2 //blade
+
+Route::get('/cabinet/additional_data/guarantor', [UserController::class, 'getGuarantor']);
+
+Route::post('/cabinet/additional_data/guarantor', [UserController::class, 'addGuarantor']);
+
+Route::post('/cabinet/safety', [UserController::class, 'changeAuthData']);
+
+Route::get('/cabinet/safety', [UserController::class, 'getSafety']);
+
+Route::get('/cabinet/support', [UserController::class, 'getSupport']);
+
+Route::post('/cabinet/support', [UserController::class, 'sendSupport']);
+
+Route::post('/application/test', function (Request $request){
+    return ['bruh' => $request->input('_token')];
+});
+
+Route::post('/test_form', function (Request $request){
+    $file = $request->file('file');
+    $extension = $file->extension();
+    $file->storeAs('', 'bruh5'.'.'.$extension);
+    $path = Storage::path('bruh5'.'.'.$extension);
+    $url = Storage::url('bruh5'.'.'.$extension);
+    return ['msg' => $url];
+});
+
+Route::get('/test_form', function (Request $request){
+    return view('test_form');
+});
+
+Route::get('/nigger/{file}', function (Request $request, $file){
+    $path = Storage::path($file);
+    return response()->file($path);
+});
+
+Route::get('/files/{file}', function (Request $request, $file){
+    if(isUser($request) || isLoanOfficer($request)) {
+        $path = Storage::path($file);
+        return response()->file($path);
+    }
+    return redirect()->route('main_route');
+    //return Storage::download($file);
+});
 
 
 

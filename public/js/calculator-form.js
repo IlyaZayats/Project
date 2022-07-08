@@ -7,6 +7,33 @@ window.addEventListener("DOMContentLoaded",function(){
             "precent": 0.09,
         }
     };
+
+    const sendApplication = (input) => {
+        fetch("http://194.67.116.171/application/send", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(input)
+        })
+            .then(function (response){
+                if(!response.ok)
+                {
+                    throw new Error(response.status);
+                }
+                return response.json();
+            })
+            .then(function (result){
+                alert(result['msg']);
+            })
+            .catch((error) => {
+                alert(error);
+            })
+
+    }
+
+
     const formc = document.getElementById('credit-calculation');
     const allBlocks= document.querySelectorAll('.calculator-credit-block');
     const calc_selector = document.getElementById("credit-type-selector");
@@ -51,8 +78,12 @@ window.addEventListener("DOMContentLoaded",function(){
     if(calculable[creType]!= undefined){
         filteredInput['monthlyPayment']= monthPrecent.toFixed();
     }
+    filteredInput['_token'] = document.querySelector('#calculatorModal').querySelector('input[name="_token"]').value;
     console.log(filteredInput);
-      }, false)
+
+    sendApplication(filteredInput);
+
+    }, false);
 
     creditTypeChange(calc_selector.value);
     const btn_toggle= document.querySelectorAll(".btn-calculator-toggle");
@@ -85,4 +116,5 @@ window.addEventListener("DOMContentLoaded",function(){
             
         })
     });
+
 });
