@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-exit {
+    background-color: yellow;
+    border-radius: 25px;
+    font-size: 24px;
+    border-color: yellow;
+}
+
+.text-brand{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.text-navbar{
+    font-size: 20px;
+}
+
+.text-msg-header{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.text-msg-body{
+    font-size: 16px;
+}
+
+.text-msg-bottom{
+    font-size: 12px;
+}
+
+.message-inners{
+    border-top: solid 1px grey;
+    cursor: pointer;
+}
+
+.msg-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.msg-extra{
+    font-size: 14px;
+    color: grey;
+}
+
+.msg-extra-bar{
+    font-size: 14px;
+    color: grey;
+}
+
+.msg-date{
+    font-size: 12px;
+    color:grey;
+}
+
+.modal-content-msg{
+    border: none;
+
+}
+
+.new-msg::before{
+    margin-top: 5px;
+    position: absolute;
+    content: "";
+    left: 10px;
+    height: 15px;
+    width: 15px;
+    background-color: #0d6efd;
+    border: 1px #0d6efd;
+    border-radius: 50%;
+    cursor: default;
+}
+
+.offcanvas-footer{
+    border-top: solid 1px grey;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <title>Формирование ответа</title>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="css/lk_main.css"/>
+        <link rel="stylesheet" href="css/nav-style.css"/>   
+        <link rel="stylesheet" href="css/formirovanie.css">
+		<script src="js/formirovanie_posle_nazhatia.js"></script>
+    </head>
+
+    <body>
+      
+        <nav class="navbar navbar-expand-lg" style="background-color: black;"></nav>
+        
+        <div class="p-3 mb-2 bg-dark">
+            <ul class="nav justify-content-end">
+            <li class="nav-item col-12 col-md-11">
+            <a class="nav-link text-white" href="#">Главная</a>
+            </li>
+            <li class="nav-item col-12 col-md-1">
+            <button type="button" class="btn btn-style">Выйти</button>
+            </li>
+            </ul>
+        </div>
+    
+	
+        <div class="container-fluid">
+            <div class="col-md-12 mt-4 mb-3 text-center title_lk">
+                <h1 class = "py-3">ЛИЧНЫЙ КАБИНЕТ</h1>
+            </div>
+			
+			<div class="col-md-12 mt-4 mb-3 text-center title_lk">
+                <h4>ФОРМИРОВАНИЕ ОТВЕТА ПО КРЕДИТУ</h4>
+            </div>
+			
+			<div class="col-md-12 mt-4 mb-3 text-center title_lk">
+                <h5>ЗАЯВКА</h5>
+            </div>
+			<br/>
+    
+    <section class="credits" id="credits">
+        <div>
+            <div class="container">
+                <div class="row justify-content-center text-center">
+				
+                    <div class="col-xl-6 col-lg-7 col-md-9 col-sm-10 col-xs-10">
+						<form action="" name="form" method="POST" onsubmit="return sendform();">
+							<h5 class="text-center"><label>Сумма кредита: {{$sum}} <input type="text" id="summ_kr" disabled> рублей</label><br/></h5>
+							<h5 class="text-center"><label>Срок: <input type="text" id="srok_kr" disabled> месяца(ев)</label><br/></h5>
+							<h5 class="text-center"><label>Ежемесячный платёж: <input type="text" id="ezh_pl" disabled> руб/месяц</label><br/></h5>
+							<h5 class="text-center"><label>Все документы прошли проверку: <input type="text" id="corr_doc" disabled></label><br/></h5>
+							<div class="d-grid gap-2">
+								<button class="btn" id="calculate" type="submit"><b>Расчитать рейтинг</b></button><br/>
+							</div>
+						</form>
+					</div>
+					
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h5 style="visibility: hidden" class="text-center" id="rat_cl">Рейтинг клиента: {{$rating}}<input type="text" id="rating" value="2" disabled><br/><br/></h5>
+					</div>
+											
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="d-grid gap-2">
+							<button style="visibility: hidden" class="btn" id="input_bd" type="submit"><b>Внести в БД</b></button><br/>
+						</div>
+					</div>
+					
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="d-grid gap-2">
+							<button style="visibility: hidden" class="btn" id="send_otch" type="submit"><b>Отправить ответ</b></button><br/>
+						</div>
+					</div>
+					
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">	
+						<h5 style="visibility: hidden" id="new_predl">НОВОЕ ПРЕДЛОЖЕНИЕ</h5>
+						<table style="visibility: hidden" id="table" class="table table-bordered">
+							<tbody>
+								<tr>
+								  <td class="text-start" scope="row">СУММА КРЕДИТА (В РУБ)</td>
+								  <td>1000000</td>
+								</tr>
+								<tr>
+								  <td class="text-start" scope="row">СРОК КРЕДИТА (В МЕСЯЦАХ)</td>
+								  <td>18</td>
+								</tr>
+								<tr>
+								  <td class="text-start" scope="row">ЕЖЕМЕСЯЧНЫЙ ПЛАТЁЖ (РУБ/МЕС)</td>
+								  <td>20000</td>
+								</tr>								
+							</tbody>
+						</table><br/>
+					</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+            
+    
+        <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - -  -  -->
+    
+        <!-- <div class="fixed-bottom"> -->
+            <footer class="bg-dark text-center text-white">
+                <div class="container p-4">
+<!--                   
+                  <section>
+                    <form action="">
+                      <div class="row d-flex justify-content-center">
+                        <div class="col-auto">
+                          <p class="pt-2">
+                            <strong>Подпишитесь на нашу рассылку</strong>
+                          </p>
+                        </div>
+                        <div class="col-md-5 col-12"> 
+                          Email input
+                            <div class="form-outline form-white mb-4">
+                            <input type="email" id="form5Example21" class="form-control" />
+                            <label class="form-label" for="form5Example21">Адрес электронной почты</label>
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <button type="submit" class="btn btn-outline-light mb-4">
+                            Подписаться
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </section>
+                -->
+                  <section>
+                    <div class="row">
+                      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Контактная информация:</h5>
+                            +7-918-931-39-32
+                      </div>
+                      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Адрес:</h5>
+                            г. Краснодар, ул. Красная 32
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              
+                <div class="text-center p-3" style="background-color: black;">
+                  © 2022. Tiunoff bank, официальный сайт.
+                </div>
+            </footer> 
+        </body>
+    </html>
+        <!-- </div> -->

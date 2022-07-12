@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <title>Проверка данных</title>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/proverka_dannih.css"/>
+        <link rel="stylesheet" href="css/nav-style.css"/>
+		<script src="js/additional_data_check.js"></script>
+    </head>
+
+    <body>
+      
+        <nav class="navbar navbar-expand-lg" style="background-color: black;"></nav>
+        
+        <div class="p-3 mb-2 bg-dark">
+            <ul class="nav justify-content-end">
+            <li class="nav-item col-12 col-md-11">
+            <a class="nav-link text-white" href="#">Главная</a>
+            </li>
+            <li class="nav-item col-12 col-md-1">
+            <button type="button" class="btn btn-style">Выйти</button>
+            </li>
+            </ul>
+        </div>
+    
+        <div class="container-fluid">
+            <div class="col-md-12 mt-4 mb-3 text-center title_lk">
+                <h1 class = "py-3">ЛИЧНЫЙ КАБИНЕТ</h1>
+            </div>
+			
+			<div class="col-md-12 mt-4 mb-3 text-center title_lk">
+                <h5><b>ПРОВЕРКА ДАННЫХ</b></h5>
+            </div>
+			<br/>
+    
+    <section class="credits" id="credits">
+        <div class="proverka_dannih">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<table class="table table-bordered border-dark table-hover">
+							<thead>
+								<th scope="col">НАЗВАНИЕ ДОКУМЕНТА</th>
+								<th width="500" scope="col">ССЫЛКА/№</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>СНИЛС</td>
+									<td>123</td>
+								</tr>
+								<tr>
+									<td>СПРАВКА О СУДИМОСТИ</td>
+									<td><a href = "#">Справка о судимости</a></td>
+								</tr>
+								<tr>
+									<td>2-НДФЛ</td>
+									<td><a href = "#">2-НДФЛ</a></td>
+								</tr>
+								<tr>
+									<td>ПАСПОРТ</td>
+									<td>456</td>
+								</tr>
+								<tr>
+									<td>ИНН</td>
+									<td>789</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+                    
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="sprava_ot_table_dokum">
+							<form action="" name="form" method="POST" onsubmit="return sendform();">
+								<p><label>Количество просроченных платежей: <input type="text" id="kolvo_prosr_plategey" disabled></label><br/></p>
+								<p><label>Возраст клиента: <input type="number" name="vozrast_klienta" id="vozrast_klienta"></label></p>
+								<p>
+									<label>Все документы прошли проверку на корректность и подлинность:
+										<select id="doki">
+											<option name="nol" id="nol" value="nol"></option>
+											<option name="yes" id="yes" value="yes">Да</option>
+											<option name="no" id="no" value="no">Нет</option>
+										</select>
+									</label>
+								</p>
+								<span id = "err"></span>
+								<div class="d-grid gap-2">
+									<button class="btn" id="vnesti_dannie_v_bd" type="submit"><b>Внести результат проверки в базу данных</b></button>
+									<button class="btn" id="proverka_platejesposobnosti" type="button" onclick="location.href = 'https://google.com'"><b>Проверка платёжеспособности</b></button>
+									<button class="btn" id="vnesti_v_chspisok" type="button" onclick="location.href = 'https://google.com'"><b>Внести в чёрный список</b></button>
+								</div>
+							</form>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+		
+		<br/><br/>
+    
+        <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - -  -  -->
+    
+    
+        <footer class="bg-dark text-center text-white">
+            <div class="container p-4">
+              <!--
+              <section>
+                <form action="">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-auto">
+                      <p class="pt-2">
+                        <strong>Подпишитесь на нашу рассылку</strong>
+                      </p>
+                    </div>
+                    <div class="col-md-5 col-12"> 
+                      Email input
+                        <div class="form-outline form-white mb-4">
+                        <input type="email" id="form5Example21" class="form-control" />
+                        <label class="form-label" for="form5Example21">Адрес электронной почты</label>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-outline-light mb-4">
+                        Подписаться
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </section>
+            -->
+              <section>
+                <div class="row">
+                  <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Контактная информация:</h5>
+                        +7-918-931-39-32
+                  </div>
+                  <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Адрес:</h5>
+                        г. Краснодар, ул. Красная 32
+                  </div>
+                </div>
+              </section>
+            </div>
+          
+            <div class="text-center p-3" style="background-color: black;">
+              © 2022. Tiunoff bank, официальный сайт.
+            </div>
+        </footer> 
+    
+    </body>
+</html>
