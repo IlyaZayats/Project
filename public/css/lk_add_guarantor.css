@@ -1,0 +1,134 @@
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title_lk {
+    font-size: 300%;
+    text-align: center;
+    font-style: normal;
+    text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  }
+  
+  .title_lk h1{
+    background: linear-gradient(to left, white, rgba(246, 255, 0, 0.438),white );
+  }
+  
+  h1, h3{
+    font-weight: bold;
+  }
+
+  .error {
+    color: red;
+  }
+
+  /*подтвердить*/
+
+.lk_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.lk_but {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid rgba(0, 0, 0, 0.025);
+  font-size: 15px;
+  background-color: rgba(255, 255, 0, 0.668);
+  border-radius: 15px;
+}
+
+.lk_but:hover {
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: background 300ms;
+}
+
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* для красоты чекбоксов ;D */
+
+.check_lk label {
+    color: rgb(0, 0, 0);
+    cursor: default;
+    font-weight: normal;
+    vertical-align: middle;
+  }
+    
+  .check_lk label:before {
+    content: " ";
+    color: #000;
+    display: inline-block;
+    font: 20px/30px Arial;
+    margin-right: 15px;
+    text-align: center;
+    text-indent: 0px;
+    width: 30px;
+    height: 30px;
+    background: rgba(246, 255, 0, 0.197);
+    border: 2px solid #0000005a;
+    border-image: initial;
+    vertical-align: middle;
+  }
+  #checkbox-id-2, #checkbox-id-3, 
+  input:checked + label:before {
+    content: '✔';
+  }
+
+  /* кнопочки "добавить" */
+
+.add-button {
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    color: #2c2cd7;
+  }
+  
+  .add-button:hover{
+    border-bottom: 2px solid #2c2cd7;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    color: #2c2cd7;
+  }
+  
+  /* кнопочки "удалить" */
+  
+  .delete-button {
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    color: #D72C2C;
+    position: static
+  }
+  
+  .delete-button:hover{
+    border-bottom: 2px solid #D72C2C;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    color: #D72C2C;
+  }
+
+   /*кнопки "добавить" и "удалить" до взаимодействия с модальными окнами */
+  
+  #delete-button-3 {
+    display: none;
+  }
+  
+  #delete-button-2 {
+    display: none;
+  } 
+
+  /* "вы не добавили файл!" */
+  #sms_ndfl,
+  #sms_statement {
+  color: red;
+  font-size: 20px;
+}

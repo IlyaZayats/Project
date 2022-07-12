@@ -1,0 +1,16 @@
+input[type=text] {
+  width: 60px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  padding-bottom: 20px;
+}
+
+#calculate, #input_bd, #send_otch{
+  background: yellow;
+  border-radius: 25px;
+}
+
+#table{
+	border-color: black;
+}
