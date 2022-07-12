@@ -22,9 +22,12 @@ class RegistrationController extends Controller
             $errors = true;
             $code = $code.'2';
         }
-        if (empty($request->input('userSecondName')) || !boolval(preg_match('/^[\sa-zA-Zа-яА-Я-]+$/u', $request->input('userSecondName'))) || mb_strlen($request->input('userSecondName'), 'UTF-8') > 30) {
-            $errors = true;
-            $code = $code.'3';
+        //
+        if (!boolval(preg_match('/^[\sa-zA-Zа-яА-Я-]+$/u', $request->input('userSecondName'))) || mb_strlen($request->input('userSecondName'), 'UTF-8') > 30) {
+            if(!empty(($request->input('userSecondName')))) {
+                $errors = true;
+                $code = $code . '3';
+            }
         }
         if (empty($request->input('userITN')) || !boolval(preg_match('/^\d+$/', $request->input('userITN'))) || strlen($request->input('userITN')) != 12) {
             $errors = true;

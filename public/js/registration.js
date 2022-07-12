@@ -61,12 +61,11 @@ $(document).ready(function (){
             start_errors[2] = false;
             let target = event.target.value;
             errors[2] = false;
-            if(target === ""){
-                errors[2] = true;
-                printError(errors_fields[2],"Введите ваше отчество!");
-            } else if (!reg_exps[2].test(target)){
-                errors[2] = true;
-                printError(errors_fields[2],"Используются недопустимые символы!");
+            if (!reg_exps[2].test(target)){
+                if(target !== "") {
+                    errors[2] = true;
+                    printError(errors_fields[2], "Используются недопустимые символы!");
+                }
             } else if (target.length>30){
                 errors[2] = true;
                 printError(errors_fields[2],"Длина отчества не может превышать 30 сиволов!");
@@ -270,7 +269,7 @@ $(document).ready(function (){
     const empty_msg = new Map ([
         [".surname", "Введите вашу фамилию!"],
         [".name", "Введите ваше имя!"],
-        [".second-name", "Введите ваше отчество!"],
+        [".second-name", ""],
         [".passport", "Введите ваш паспорт(серия,номер)!"],
         [".itn", "Введите ваш ИНН!"],
         [".email", "Введите ваш адрес электронной почты!"],
@@ -292,6 +291,7 @@ $(document).ready(function (){
                     $(errors_fields[index]).text("");
                 }
             });
+            console.log(final_error);
             if(!final_error) {
                 e.preventDefault();
 

@@ -14,6 +14,11 @@ use App\Http\Controllers\UserController;
 
 class AuthController extends Controller
 {
+    function isClerk($request): bool
+    {
+        return $request->session()->has('accountType') && $request->session()->get('accountType')==3;
+    }
+
     function isLoanOfficer($request): bool
     {
         return $request->session()->has('accountType') && $request->session()->get('accountType')==2;
@@ -49,8 +54,14 @@ class AuthController extends Controller
     }
 
     //Login processing
-    public function cabinet_clerk(){
-        return view('cabinet_clerk');
+    public function cabinet_clerk(Request $request){
+        if(DB::table('Messages_cond')->where('worker', '=', $request->session()->get('login'))->where('active', '=', 1)->doesntExist()){
+            return view('cabinet_clerk');
+        } else {
+            $id_msg = DB::table('Messages_cond')->where('worker', '=', $request->session()->get('login'))->where('active', '=', 1)->value('id_message');
+            //$ITN = DB::table('Auth_data')->where('login', )->value('ITN');
+            return redirect('cabinet/messages/answer/'.DB::table('Messages')->where('id_message', $id_msg)->value('sender').'/'.$id_msg);
+        }
     }
 
     public function cabinet_user(Request $request){
@@ -108,7 +119,7 @@ class AuthController extends Controller
                     return $this->cabinet_loan_officer($request);
                 }
                 case 3:{
-                    return $this->cabinet_clerk();
+                    return $this->cabinet_clerk($request);
                 }
                 default:{
                     return redirect()->route('main_route');
@@ -122,10 +133,14 @@ class AuthController extends Controller
     public function leave(Request $request){
         if($this->isLoanOfficer($request)) {
             //DB::update('UPDATE Application SET login_worker="login_worker" WHERE id_app=?', [$request->session()->get('id')]);
-            DB::table('Application')->where('id_app', [$request->session()->get('id')])->update(['login_worker' => "login_worker"]);
+            DB::table('Application')->where('id_app', [$request->session()->get('id')])->where('valid', '=', 1)->update(['login_worker' => "login_worker"]);
             if(DB::table('Application')->where('id_app', [$request->session()->get('id')])->value('valid')==1) {
                 DB::table('Messages')->where('id_message', [$request->session()->get('id_msg')])->update(['sender' => DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login')]);
             }
+        } else if($this->isClerk($request) && $request->session()->has('ITN')) {
+            $id_answer = DB::table('Messages_cond')->where('worker', $request->session()->get('login'))->where('active', '=', 1)->value('id_answer');
+            DB::table('Messages')->where('id_message', $id_answer)->update(['sender' => DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login')]);
+            DB::table('Messages_cond')->where('id_answer', $id_answer)->where('active', '=', 1)->update(['worker' => 'worker']);
         }
         $request->session()->flush();
         return redirect()->route('main_route');

@@ -88,7 +88,7 @@
                     <div class="check-wrapper mt-3">
                         <input type="checkbox" id="userPolicy" class="form-check-input">
                         <label for="userPolicy" class="form-check-label">Даю согласие на обработку</label>
-                        <a class="text-decoration-none form-check-label" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">персональных данных</a>
+                        <a class="text-decoration-none form-check-label" href="http://194.67.116.171/files/personal.pdf">персональных данных</a>
                         <div class="error text-end policy"></div>
                     </div>
                     <div class="confirm-button-wrapper text-center">

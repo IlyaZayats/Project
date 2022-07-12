@@ -6,6 +6,21 @@
 {
     display: block;
 }
+
+#calculatorModal{
+    z-index: 1060;
+}
+
+#infoModal{
+    z-index: 1061;
+}
+
+.error-login{
+    color: red;
+    font-size:14px;
+    font-weight: bold;
+}
+
 .calulator-form-wrapper .calculator-ranges::-moz-range-track
 {
     -webkit-appearance: none;

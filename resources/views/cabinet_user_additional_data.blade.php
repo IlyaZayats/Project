@@ -155,11 +155,11 @@
                         <form id="criminal_recordID" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="additional_type" value="criminal_record">
-                            <input type="file" class="form-control-file" id="criminal_id" name="file">
+                            <input type="file" class="form-control" id="criminal_id" name="file">
                         </form>
                     </div>
                         <div>
-                            <b style = "color: yellow; font-size: 13px;">Документ должен быть в формате pdf, png или jpg!</b>
+                            <b style = "color: grey; font-size: 13px;">Документ должен быть в формате pdf, png или jpg!</b>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary btn-confirm" id="submit_button_5">Подтвердить</button>
@@ -202,7 +202,7 @@
                                     <input id="ndfl_id" class="form-control" name="file" type="file">
                                 </form>
                             </div>
-                            <b style = "color: yellow; font-size: 13px;">Документ должен быть в формате pdf, png или jpg!</b>
+                            <b style = "color: grey; font-size: 13px;">Документ должен быть в формате pdf, png или jpg!</b>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary btn-confirm" id="submit_button_3">Подтвердить</button>
@@ -275,7 +275,7 @@
                             </button>
                         </div></br>
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="delete-button-3" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#NdflDelete" style="display:@if(!empty($INIPA) && empty($data->income_statement)) none; @else block; @endif">
+                            <button id="delete-button-3" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#NdflDelete" style="display:@if(empty($INIPA) || empty($data->income_statement)) none; @else block; @endif">
                                 Удалить
                             </button>
                         </div></br>
@@ -310,7 +310,7 @@
                             </button>
                         </div></br>
                         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 px-5 mx-2 position-absolute">
-                            <button id="delete-button-5" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#CriminalDelete" style="display: @if(!empty($INIPA) && empty($data->criminal_record)) none; @else block; @endif">
+                            <button id="delete-button-5" type="button" class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#CriminalDelete" style="display: @if(empty($INIPA) || empty($data->criminal_record)) none; @else block; @endif">
                                 Удалить
                             </button>
                         </div></br>
@@ -318,8 +318,8 @@
                 </div>
                 <div class = "col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 py-3">
                     <div class="lk_buttons">
-                        <button type="button" class="lk_but p-3" onclick="location.href='http://194.67.116.171/cabinet/additional_data/guarantor'">
-                            ДОБАВИТЬ ПОРУЧИТЕЛЯ
+                        <button type="button" id="guarantorButton" class="lk_but p-3" onclick="location.href='http://194.67.116.171/cabinet/additional_data/guarantor'" style="display: @if(empty($INIPA)) none; @else block; @endif">
+                            @if(empty($data->guarantor))ДОБАВИТЬ ПОРУЧИТЕЛЯ@else ИЗМЕНИТЬ ПОРУЧИТЕЛЯ@endif
                         </button><br>
                     </div>
                 </div>
@@ -452,6 +452,8 @@
         </div>
     </div>
 </div>
+
+<div style="padding-bottom: 300px;"></div>
 
 <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - - --->
 <footer class="bg-dark text-center text-white fixed-bottom">

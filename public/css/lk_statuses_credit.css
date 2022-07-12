@@ -26,6 +26,11 @@
     height: 200px;
   }
 
+  .btn-block:focus{
+    outline: 0 !important;
+    box-shadow: none;
+  }
+
   @media (min-width: 0px) and (max-width: 485px) {
     .text_size{
       font-size: 8px;

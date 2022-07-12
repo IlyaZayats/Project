@@ -8,6 +8,16 @@
     border-radius: 20px;
 }
 
+.confirm-button:focus{
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.back-button:focus{
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
 .modal-button{
     background-color: yellow;
 }
@@ -50,6 +60,10 @@
         width: auto;
         color: #212529;
         background-color: transparent;
+    }
+
+    .back-button:hover{
+        color: #212529;
     }
 }
 

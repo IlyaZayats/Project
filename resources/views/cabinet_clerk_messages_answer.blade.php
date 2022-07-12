@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Личный кабинет | Добавление в ЧС банка | Заявка № {{$id}} </title>
+    <title>Личный кабинет | Добавление в ЧС банка | Заявка № {{$data->id_message}} </title>
     <meta charset='utf-8'/>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
     <link href="http://194.67.116.171/css/bootstrap.css" rel="stylesheet">
@@ -66,13 +66,17 @@
         </div>
     </div>
     <div class="col-md-12 mt-3 mb-5 text-center">
-        <h5 style="font-weight: bold"><a class="text-danger" href="http://194.67.116.171/cabinet">ЗАЯВКА №{{$id}}</a>/<a class="text-danger" href="#" onclick="history.go(-1);">ФОРМИРОВАНИЕ ОТВЕТА ПО КРЕДИТУ</a>/ОТВЕТ КЛИЕНТУ</h5>
+        <h5 style="font-weight: bold"><a class="text-danger" href="http://194.67.116.171/drop_application">ВХОДЯЩИЕ СООБЩЕНИЯ</a>/ОТВЕТ КЛИЕНТУ</h5>
     </div>
 
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-10 col-md-10 col-12">
+                <label class="pt-4 mb-2" for="topicUser">Тема сообщения</label>
+                <input class="form-control" id="topicUser" type="text" value="{{$data->msg_topic}}" disabled>
+                <label class="pt-4 mb-2" for="textUser">Текст сообщения</label>
+                <textarea class="form-control" type="text" id="textUser" disabled>{{$data->text}}</textarea>
                 <form name="form" id="messageForm">
                     @csrf
                     <div class="text-wrapper">
@@ -101,6 +105,7 @@
     </div>
 </div>
 
+<div style="padding-bottom: 300px"></div>
 
 <!-- - - - - - - - - - - - - - - - - - F  O  O  T  E  R - - - - - - - - - - - - - - - - - - - - -->
 
@@ -127,6 +132,6 @@
 </body>
 <script src="http://194.67.116.171/js/jquery_v3.6.0.js"></script>
 <script src="http://194.67.116.171/js/bootstrap.js"></script>
-<script src="http://194.67.116.171/js/loan_officer/loan_response_message.js"></script>
+<script src="http://194.67.116.171/js/clerk/answer.js"></script>
 <script src="http://194.67.116.171/js/leave.js"></script>
 </html>

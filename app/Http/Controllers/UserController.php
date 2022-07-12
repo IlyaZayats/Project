@@ -106,6 +106,24 @@ class UserController extends Controller
                         ]);
                         $data['sum'] = $request->input('credit-card-sum');
                         $data['loan_type'] = 1;
+                        $data['term'] = 0;
+                        switch ($data['sum']){
+                            case 50000:{
+                                $data['fee'] = 3000;
+                                break;
+                            }
+                            case 100000:{
+                                $data['fee'] = 6000;
+                                break;
+                            }
+                            case 200000:{
+                                $data['fee'] = 12000;
+                                break;
+                            }
+                            default: {
+                                return ['msg' => -1, 'code' => 'invalid data'];
+                            }
+                        }
                         break;
                     }
                     case 'credit-cash':{
@@ -182,12 +200,27 @@ class UserController extends Controller
             $name = UserController::getName($request);
             $full_msg = UserController::getFullMsg($request);
             $amount = UserController::getAmount($full_msg);
+            $active = collect(DB::table('Active_loans')->where('ITN', $request->session()->get('ITN'))->where('valid', '=', 1)->get())->all();
+            $passive = collect(DB::table('Active_loans')->where('ITN', $request->session()->get('ITN'))->where('valid', '=', 0)->get())->all();
+            $applications = collect(DB::table('Application')->where('ITN', $request->session()->get('ITN'))->where('valid', '=', 1)->where('confirm', '=', null)->where('rating', '>', '1')->get())->all();
+            $contract_applications = array();
+            $i=0;
+            if(!empty($applications)){
+                foreach ($applications as $item){
+                    $text = DB::table('Messages')->where('id_message', $item->id_message)->value('text');
+                    if(!empty($text)){
+                        $contract_applications[$i] = $item;
+                        $i++;
+                    }
+                }
+            }
+
 //        foreach ($full_msg as $item){
 //            $full_msg[$i] = collect($item)->all();
 //            $i++;
 //        }
-            //return view ('test', ['bruh'=>$full_msg]);
-            return view('cabinet_user_status', ['msg' => $full_msg, 'name' => $name, 'amount' => $amount]);
+            //return view ('test', ['bruh'=>$contract_applications]);
+            return view('cabinet_user_status', ['msg' => $full_msg, 'name' => $name, 'amount' => $amount, 'active' => $active, 'passive' => $passive, 'apps' => $contract_applications]);
         }
         return redirect()->route('main_route');
     }
@@ -234,7 +267,7 @@ class UserController extends Controller
             } else if ($additional_type == 'passport_data' && strlen($request->input('data'))==10){
                 $code = DB::table('Registered')->where('ITN', $request->session()->get('ITN'))->update(['passport_data' => $request->input('data')]);
             }
-            return ['msg' => $code, 'additional_type' => $additional_type];
+            return ['msg' => intval($code), 'additional_type' => $additional_type];
         }
         return ['msg' => -2];
     }
@@ -285,13 +318,13 @@ class UserController extends Controller
 
     function sendSupport(Request $request){
         $request->validate([
-            'topic' => ['required', 'regex:/^[\s0-9a-zA-Z-_а-яА-Я]+$/'],
-            'text' => ['required', 'regex:/^[\s0-9a-zA-Z-_а-яА-Я]+$/']
+            'topic' => ['required', 'regex:/^[\s0-9a-zA-Z-_а-яА-Я]+$/u'],
+            'text' => ['required', 'regex:/^[\s0-9a-zA-Z-_а-яА-Я!?,.():;]+$/u']
         ]);
         if($this->isUser($request)) {
             $code = -1;
             $id = DB::table('Messages')->insertGetID(['sender' => $request->session()->get('login'), 'text' => $request->input('text'), 'msg_topic' => $request->input('topic'), 'msg_type' => 1]);
-            $code = DB::table('Message_Conditions')->insert(['id_message' => $id]);
+            $code = DB::table('Messages_cond')->insert(['id_message' => $id]);
             return ['msg' => 1, 'code' => $id.$code];
         }
         return ['msg' => -2, 'code' => -1];
@@ -334,6 +367,41 @@ class UserController extends Controller
             return ['msg' => $msg, 'code' => $code];
         }
         return ['msg' => -2, 'code' => -1];
+    }
+
+    function refuseContract(Request $request){
+        if($this->isUser($request)) {
+            $request->validate([
+                'id_app' => ['required', 'integer']
+            ]);
+            $code = -1;
+            if(DB::table('Application')->where('id_app', $request->input('id_app'))->exists()){
+                $code = DB::table('Application')->where('id_app', $request->input('id_app'))->update(['confirm' => 0]);
+                //DB::table('Black_list')->insert(['ITN' => $request->session()->get('ITN')]);
+            }
+            return ['msg' => 1, 'code' => $code];
+        }
+        return ['msg' => -2, 'code' => -1];
+    }
+
+    function addContract(Request $request){
+        if($this->isUser($request)) {
+            $request->validate([
+                'id_app' => ['required', 'integer'],
+                'contract' => ['required', 'mimetypes:image/jpeg,image/png,application/pdf']
+            ]);
+            $id_app = $request->input('id_app');
+            $file = $request->file('contract');
+            $code = -1;
+            if (DB::table('Application')->where('id_app', $request->input('id_app'))->exists()) {
+                $extension = $file->extension();
+                $file_name = 'contract' . $request->session()->get('ITN') . '_' . $id_app . '.' . $extension;
+                $file->storeAs('', $file_name);
+                $code = DB::table('Application')->where('id_app', $request->input('id_app'))->update(['confirm' => 1, 'contract' => $file_name]);
+            }
+            return ['msg' => 1, 'code' => $code];
+        }
+        return ['msg' => -1, 'code' => -1];
     }
 
 }

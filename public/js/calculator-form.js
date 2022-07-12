@@ -25,7 +25,25 @@ window.addEventListener("DOMContentLoaded",function(){
                 return response.json();
             })
             .then(function (result){
-                alert(result['msg']);
+                let messageModal = document.getElementById('infoModal');
+                switch(result['msg']){
+                    case 0:
+                        messageModal.querySelector('.modal-title').innerHTML = 'Ошибка отправки!';
+                        messageModal.querySelector('.modal-body p').innerHTML = 'Для отправки заявки требуется авторизация в ИС!';
+                        break;
+                    case -1:
+                        messageModal.querySelector('.modal-title').innerHTML = 'Ошибка отправки!';
+                        messageModal.querySelector('.modal-body p').innerHTML = 'Некорректно введены данные!';
+                        break;
+                    case 1:
+                        messageModal.querySelector('.modal-title').innerHTML = 'Успешная отправка!';
+                        messageModal.querySelector('.modal-body p').innerHTML = 'Заявка принята! Спасибо! Сотрудники банка рассмотрят её в ближайшее время! Code: ' + result['code'];
+                        break;
+                    default:
+                        messageModal.querySelector('.modal-title').innerHTML = 'Ошибка отправки!';
+                        messageModal.querySelector('.modal-body p').innerHTML = 'Непредвиденная ошибка';
+                }
+                $('#infoModal').modal('show');
             })
             .catch((error) => {
                 alert(error);
@@ -51,7 +69,7 @@ window.addEventListener("DOMContentLoaded",function(){
         const dur = activeBlock.querySelector(".calculator-credit-period input[type='number']").value;
         monthPrecent = (amount*perc)/(1-(Math.pow((1+perc),-dur)));
         activeBlock.querySelector('.calculator-monthly').value = Math.round(monthPrecent);
-        
+
     };
     function creditTypeChange(stringcomp){
         allBlocks.forEach((element)=>{
@@ -61,27 +79,27 @@ window.addEventListener("DOMContentLoaded",function(){
         monthlyPayEval();
     };
     formc.addEventListener('submit', function (event) {
-      event.preventDefault();
-      if (!formc.checkValidity()) {
-        event.stopPropagation();
-        return;
-    }
-    let input = Object.fromEntries(new FormData(event.target));
-    const creType = input['credit-type'];
-    let filteredInput = {};
-    filteredInput['credit-type']= creType;
-    for (const [key,value] of Object.entries(input)){
-        if (key.includes(creType)){
-            filteredInput[key]=value;
+        event.preventDefault();
+        if (!formc.checkValidity()) {
+            event.stopPropagation();
+            return;
         }
-    }
-    if(calculable[creType]!= undefined){
-        filteredInput['monthlyPayment']= monthPrecent.toFixed();
-    }
-    filteredInput['_token'] = document.querySelector('#calculatorModal').querySelector('input[name="_token"]').value;
-    console.log(filteredInput);
+        let input = Object.fromEntries(new FormData(event.target));
+        const creType = input['credit-type'];
+        let filteredInput = {};
+        filteredInput['credit-type']= creType;
+        for (const [key,value] of Object.entries(input)){
+            if (key.includes(creType)){
+                filteredInput[key]=value;
+            }
+        }
+        if(calculable[creType]!= undefined){
+            filteredInput['monthlyPayment']= monthPrecent.toFixed();
+        }
+        filteredInput['_token'] = document.querySelector('#calculatorModal').querySelector('input[name="_token"]').value;
+        console.log(filteredInput);
 
-    sendApplication(filteredInput);
+        sendApplication(filteredInput);
 
     }, false);
 
@@ -90,9 +108,9 @@ window.addEventListener("DOMContentLoaded",function(){
     btn_toggle.forEach((element)=>{
         const reg=/^credit|card|cash|dream$/;
         element.addEventListener('click',(e)=>{
-           const template= e.target.name.split('-').filter((elem)=>elem.match(reg)).join('-');
-           calc_selector.value=template;
-           creditTypeChange(template);
+            const template= e.target.name.split('-').filter((elem)=>elem.match(reg)).join('-');
+            calc_selector.value=template;
+            creditTypeChange(template);
         });
     });
     calc_selector.addEventListener('change',(e)=>{
@@ -100,20 +118,34 @@ window.addEventListener("DOMContentLoaded",function(){
     });
     ranges.forEach((element)=>{
         element.addEventListener('input',(e)=>{
-           const field = e.target.closest(".calculator-input-group").querySelector("input[type='number']");
-           (field.value!==e.target.value)? field.value=e.target.value : '';
-           monthlyPayEval();
+            const field = e.target.closest(".calculator-input-group").querySelector("input[type='number']");
+            (field.value!==e.target.value)? field.value=e.target.value : '';
+            monthlyPayEval();
         })
     });
     fields.forEach((element)=>{
+        element.addEventListener('keydown',e=>{
+            if (
+                e.getModifierState('Meta') ||
+                e.getModifierState('Control') ||
+                e.getModifierState('Alt')
+            ) {
+                return
+            }
+            if (e.key.length !== 1 || e.key === '\x00') {
+                return
+            }
+            if ((e.key < '0' || e.key > '9') && e.key !== '.' && e.key !== '-') {
+                e.preventDefault()
+            }
+        });
         element.addEventListener('change',(e)=>{
             const field = e.target.closest(".calculator-input-group").querySelector("input[type='range']");
-            if(!(e.target.value)) return;
-            (parseInt(e.target.value) < parseInt(field.attributes.getNamedItem('min').value))? e.target.value = field.attributes.getNamedItem('min').value: null;
+            (!(e.target.value) || parseInt(e.target.value) < parseInt(field.attributes.getNamedItem('min').value))? e.target.value = field.attributes.getNamedItem('min').value: null;
             (parseInt(e.target.value) > parseInt(field.attributes.getNamedItem('max').value))? e.target.value = field.attributes.getNamedItem('max').value: null;
             (field.value!==e.target.value)? field.value=e.target.value : '';
             monthlyPayEval();
-            
+
         })
     });
 

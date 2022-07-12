@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoanOfficerController;
+use App\Http\Controllers\ClerkController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -20,6 +21,11 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+function isClerk($request): bool
+{
+    return $request->session()->has('accountType') && $request->session()->get('accountType')==3;
+}
+
 function isLoanOfficer($request): bool
 {
     return $request->session()->has('accountType') && $request->session()->get('accountType')==2;
@@ -36,7 +42,11 @@ Route::get('/', function (Request $request) {
     }
     $login_field = 'login';
     $pass_field = 'password';
-    return view('main', ['login_field' => $login_field, 'pass_field' => $pass_field]);
+    $acc_type=0;
+    if($request->session()->has('accountType')){
+        $acc_type = $request->session()->get('accountType');
+    }
+    return view('main', ['login_field' => $login_field, 'pass_field' => $pass_field, 'acc_type' => $acc_type]);
 })->name('main_route');
 
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -158,10 +168,15 @@ Route::any('/leave', [AuthController::class, 'leave'])->name('leave_route');
 
 Route::get('/loan_response_contract', function (Request $request){
     if(isLoanOfficer($request)){
-        return view('loan_response_contract', ['confirm' => DB::table('Application')->where('id_app', $request->session()->get('id'))->value('confirm'), 'id' => $request->session()->get('id')]);
+        $data = current(collect(DB::table('Application')->where('id_app', $request->session()->get('id'))->get())->all());
+        //
+        //$confirm = DB::table('Application')->where('id_app', $request->session()->get('id'))->value('confirm');
+        return view('loan_response_contract', ['confirm' => $data->confirm, 'id' => $request->session()->get('id'), 'contract' =>$data->contract ]);
     }
     return redirect()->route('main_route');
 });
+
+Route::get('/cabinet/loan_response/contract/refuse', [LoanOfficerController::class, 'loanResponseContractRefuse']);
 
 Route::post('/loan_response_contract', [LoanOfficerController::class, 'loanResponseContract']);
 
@@ -169,6 +184,11 @@ Route::get('/drop_application', function (Request $request){
     if(isLoanOfficer($request)){
         DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['login_worker' => "login_worker"]);
         return redirect()->route('cabinet_route');
+    } else if(isClerk($request)) {
+        $id_answer = DB::table('Messages_cond')->where('worker', $request->session()->get('login'))->where('active', '=', 1)->value('id_answer');
+        DB::table('Messages')->where('id_message', $id_answer)->update(['sender' => DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login')]);
+        DB::table('Messages_cond')->where('id_answer', $id_answer)->update(['worker' => 'worker']);
+        return redirect()->route('clerk_msgs_route');
     }
     return redirect()->route('main_route');
 });
@@ -179,7 +199,7 @@ Route::get('/cabinet/additional_data', [UserController::class, 'getAdditional'])
 
 Route::post('/cabinet/notifications', [UserController::class, 'messageControl']);
 
-Route::post('/application/send', [UserController::class, 'sendApplication']); //-
+Route::post('/application/send', [UserController::class, 'sendApplication']);
 
 Route::post('/cabinet/additional_data/add', [UserController::class, 'addAdditional']);
 
@@ -205,6 +225,10 @@ Route::post('/application/test', function (Request $request){
     return ['bruh' => $request->input('_token')];
 });
 
+Route::post('/cabinet/contract/refuse', [UserController::class, 'refuseContract']);
+
+Route::post('/cabinet/contract/add', [UserController::class, 'addContract']);
+
 Route::post('/test_form', function (Request $request){
     $file = $request->file('file');
     $extension = $file->extension();
@@ -227,10 +251,30 @@ Route::get('/files/{file}', function (Request $request, $file){
     if(isUser($request) || isLoanOfficer($request)) {
         $path = Storage::path($file);
         return response()->file($path);
+    } else if ($file = "personal.pdf") {
+        $path = Storage::path($file);
+        return response()->file($path);
     }
     return redirect()->route('main_route');
     //return Storage::download($file);
 });
+
+//Скачивание онли договора
+Route::get('/files/download/loan_statement.pdf', function (Request $request){
+    if(isUser($request)){
+        $path = Storage::path('loan_statement.pdf');
+        return response()->download($path);
+    }
+    return redirect()->route('main_route');
+});
+
+//Clerk
+
+Route::get('/cabinet/messages', [ClerkController::class, 'getMessages'])->name('clerk_msgs_route');
+
+Route::get('/cabinet/messages/answer/{login}/{id_msg}', [ClerkController::class, 'getAnswer']);
+
+Route::post('/cabinet/messages/answer/send', [ClerkController::class, 'sendAnswer']);
 
 
 

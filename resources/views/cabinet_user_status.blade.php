@@ -79,6 +79,7 @@
             <div class = "text-center">
                 <h4>АКТИВНЫЕ КРЕДИТЫ</h4>
             </div>
+            @if(!empty($active))
             <table class="table table-bordered border-dark mb-3 mt-3">
                 <thead class = "text-center">
                 <tr>
@@ -91,21 +92,29 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($active as $item)
                 <tr>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
+                    <td>@switch($item->loan_type) @case(1) Кредитная карта @break @case(2) Кредит наличными @break @case(3) Кредит "На исполнение мечты" @break @default Bruh @break @endswitch</td>
+                    <td>{{$item->term}}</td>
+                    <td>{{$item->loan_sum}}</td>
+                    <td>{{$item->loan_debt}}</td>
+                    <td>{{$item->loan_fee}}</td>
+                    <td>{{$item->issue_date}}</td>
                 </tr>
+                @endforeach
                 </tbody>
             </table>
+            @else
+            <h3 class="text-center">
+                У вас нет активных кредитов
+            </h3>
+            @endif
         </div>
         <div class = "col-12 col-lg-8 col-xl-8 mt-3">
             <div class = "text-center">
                 <h4>ПОГАШЕННЫЕ КРЕДИТЫ</h4>
             </div>
+            @if(!empty($passive))
             <table class="table table-bordered border-dark mb-5 mt-3">
                 <thead class = "text-center">
                 <tr>
@@ -116,15 +125,90 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
-                </tr>
+                @foreach($passive as $item)
+                    <tr>
+                        <td>@switch($item->loan_type) @case(1) Кредитная карта @break @case(2) Кредит наличными @break @case(3) Кредит "На исполнение мечты" @break @default Bruh @break @endswitch</td>
+                        <td>{{$item->term}}</td>
+                        <td>{{$item->loan_sum}}</td>
+                        <td>{{$item->issue_date}}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
+            @else
+                <h3 class="text-center">
+                    У вас нет погашенных кредитов
+                </h3>
+            @endif
         </div>
+        @if(!empty($apps))
+            <div class = "col-12 col-lg-8 col-xl-8 mt-2">
+                <div class = "text-center">
+                    <h4>ОДОБРЕННЫЕ ЗАЯВКИ, ТРЕБУЮЩИЕ ПОДПИСАНИЯ ДОГОВОРА</h4>
+                </div>
+                <div class="accordion" id="accordionContract">
+                    @foreach($apps as $item)
+                        <div class="card">
+
+                            <div class="card-header p-0" id="heading{{$item->id_app}}">
+                                <h2 class="mb-0">
+                                    <div class="btn btn-block w-100 collapsed py-2 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$item->id_app}}" aria-expanded="false" aria-controls="collapse{{$item->id_app}}">
+                                        <div class="row"><div class="col-6 text-start">Заявка №{{$item->id_app}} | @switch($item->loan_type) @case(1) Кредитная карта @break @case(2) Кредит наличными @break @case(3) Кредит "На исполнение мечты" @break @default Bruh @break @endswitch</div><div class="col-6 text-end">{{$item->send_app}}</div></div>
+                                    </div>
+                                </h2>
+                            </div>
+                            <div id="collapse{{$item->id_app}}" class="collapse" aria-labelledby="heading{{$item->id_app}}" data-parent="#accordionContract">
+                                <div class="card-body">
+                                    <div class="col-12 mx-auto">
+                                        <div class="row">
+                                            <div class="col-10 mx-auto text-center" style="font-size: 24px; font-weight: bold;">
+                                                Подписание договора
+                                            </div>
+                                            <div class="col-10 mx-auto" >
+                                                <div class="text-center" style="font-size: 18px; font-weight: bold;">
+                                                    Для заключения кредитного договора, вам необходимо:
+                                                </div>
+                                                <ul class="" style="font-size: 16px;">
+                                                    <li>
+                                                        Скачать и заполнить <a href="http://194.67.116.171/files/download/loan_statement.pdf">документ</a>
+                                                    </li>
+                                                    <li>
+                                                        Прикрепить заполненный и подписанный <a href="http://194.67.116.171/files/download/loan_statement.pdf">договор</a>
+                                                    </li>
+                                                    <li>
+                                                        Нажать кнопку "заключить кредитный договор"
+                                                    </li>
+                                                </ul>
+                                                <div style="font-size: 18px;">
+                                                    После проверки правильности заполнения <a href="http://194.67.116.171/files/download/loan_statement.pdf">договора</a>, вы получите кредит/кредитную карту.
+                                                </div>
+
+                                            </div>
+                                            <div class="col-10 mx-auto my-2">
+                                                <form id="contractForm{{$item->id_app}}" enctype="multipart/form-data" class="contract-form">
+                                                    @csrf
+                                                    <input type="file" class="form-control form-control-file w-100" id="contract{{$item->id_app}}" name="contract">
+                                                    <input type="hidden" class="id-file" name="id_app">
+                                                </form>
+                                                <div style="color: red; font-size: 14px; font-weight: bold" class="contract-err text-start"></div>
+                                            </div>
+                                            <div class="col-10 mx-auto row">
+                                                <div class="col-5 mx-auto">
+                                                    <a type="button" class="btn btn-warning btn-exit w-100 btn-refuse" style="font-size: 18px">Отказаться<div class="d-none id-app">{{$item->id_app}}</div></a>
+                                                </div>
+                                                <div class="col-5 mx-auto">
+                                                    <a class="btn btn-warning btn-exit w-100 btn-contract" type="button" style="font-size: 18px">Заключить кредитный договор</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 
@@ -150,7 +234,7 @@
                                 {{$item[0]->send_date}}
                             </div>
                         </div>
-                        <div class="message-body text-msg-body text-secondary msg-extra">
+                        <div class="message-body text-msg-body text-secondary msg-extra-bar">
                             Работник банка дал ответ
                         </div>
                         @break
@@ -161,7 +245,7 @@
                         {{$item[0]->send_date}}
                     </div>
                 </div>
-                <div class="message-body text-msg-body text-secondary msg-extra">
+                <div class="message-body text-msg-body text-secondary msg-extra-bar">
                     Сотрудник ЦПП дал ответ
                 </div>
                 @break
@@ -172,7 +256,7 @@
         {{$item[0]->send_date}}
     </div>
 </div>
-<div class="message-body text-msg-body text-secondary msg-extra">
+<div class="message-body text-msg-body text-secondary msg-extra-bar">
     Системное оповещение
 </div>
 @break
@@ -192,6 +276,11 @@
 </div>
 </div>
 
+<form id='refuse'>
+    @csrf
+    <input name="id_app" type="hidden" class="id-form">
+</form>
+
 <!--FORMS-->
 <form id='viewed'>
     @csrf
@@ -205,6 +294,7 @@
     <input name="type" type="hidden" class="type_s">
 </form>
 
+<div style="padding-bottom: 300px"></div>
 
 <!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - -  -  -->
 <footer class="bg-dark text-center text-white fixed-bottom">
@@ -230,7 +320,7 @@
 </footer>
 
 <!--MODAL MESSAGE-->
-<div class="modal fade" id="msgModal" tabindex="-2" aria-labelledby="msgModalLabel" aria-hidden="true">
+<div class="modal fade" id="msgModal" tabindex="-1" aria-labelledby="msgModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modal-content-msg">
             <div class="d-flex" style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: black;"></div>
@@ -261,9 +351,25 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title response-title" id="responseModalLabel"></h5>
+            </div>
+            <div class="modal-body response-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn modal-button w-100" style="background-color: yellow;">Понятно</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <script src="http://194.67.116.171/js/jquery_v3.6.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="http://194.67.116.171/js/bootstrap.bundle.js"></script>
 <script src="http://194.67.116.171/js/user/notifications.js"></script>
+<script src="http://194.67.116.171/js/user/cabinet_user_status.js"></script>
 </html>

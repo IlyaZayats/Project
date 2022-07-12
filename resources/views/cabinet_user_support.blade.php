@@ -258,6 +258,7 @@
 </body>
 <script src="http://194.67.116.171/js/jquery_v3.6.0.js"></script>
 <script src="http://194.67.116.171/js/bootstrap.js"></script>
+<script src="http://194.67.116.171/js/user/notifications.js"></script>
 <script src="http://194.67.116.171/js/user/cabinet_user_support.js"></script>
 <script src="http://194.67.116.171/js/leave.js"></script>
 </html>

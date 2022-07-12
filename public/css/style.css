@@ -28,36 +28,34 @@ figcaption {
   font-weight: 700;
   font-size: 64px;
   line-height: 77px;
-
   color: #000000;
 }
 
-.accordion {
-  cursor: pointer;
-  padding: 0px;
-  padding-bottom: 0;
-  width: 100%;
-  text-align: left;
-  outline: none;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 39px;
-  transition: 0.5s;
-  border: 3px solid transparent;
-}
-.accordion h3{
-  padding-left: 10px;
-  font-weight: bold;
-  color: #000000;
-  font-size: 25px;
-  position: relative;
-  cursor: pointer;
-}
+/*.accordion {*/
+/*  cursor: pointer;*/
+/*  padding: 0px;*/
+/*  padding-bottom: 0;*/
+/*  width: 100%;*/
+/*  text-align: left;*/
+/*  outline: none;*/
+/*  font-family: 'Inter';*/
+/*  font-style: normal;*/
+/*  font-weight: 700;*/
+/*  font-size: 18px;*/
+/*  line-height: 39px;*/
+/*  transition: 0.5s;*/
+/*  border: 3px solid transparent;*/
+/*}*/
+/*.accordion h3{*/
+/*  padding-left: 10px;*/
+/*  font-weight: bold;*/
+/*  color: #000000;*/
+/*  font-size: 25px;*/
+/*  position: relative;*/
+/*  cursor: pointer;*/
+/*}*/
 .accordion-active{
   background: #E372F7;
-  border-radius: 15px;
   border: 1px solid #F3FD00;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -66,7 +64,6 @@ figcaption {
 .our_text {
   padding: 0 18px;
   color: #000000;
-  border-radius: 15px;
   background-color: #E372F7;
   max-height: 0;
   overflow: hidden;
@@ -84,7 +81,7 @@ figcaption {
   .fon{
       padding-top: 3%;
       padding-bottom: 3%;
-      background:#7879F1 url(Vector\ 3.png);
+      background:#212529 url(Vector\ 3.png);
       background-position: top;
       background-repeat: no-repeat;
       background-size: cover;
@@ -95,13 +92,14 @@ figcaption {
 
   text-align: center;
   font-family: 'Inter';
-  font-style: bold;
   font-weight: 700;
   font-size: 64px;
   line-height: 77px;
-  color: #000000;
-  margin-bottom: 40px;
-  margin-top: 40px;
+  color: white;
+  padding-bottom: 20px;
+  padding-top: 40px;
+  background-color: #212529;
+  margin-bottom: 0;
 
 }
 
@@ -143,7 +141,7 @@ figcaption {
 }
 
 .credit-title {
-  border-bottom: 2px solid #f178b76e;;
+  border-bottom: 2px solid #212529;
   margin-bottom: 20px;
   text-align: center;
   font-family: 'Inter';
@@ -167,9 +165,9 @@ figcaption {
 margin-bottom: 20px;
 }
 
-.credits ul {
-  list-style-image: url("check.png");
-}
+/*.credits ul {*/
+/*  list-style-image: url("http://194.67.116.171/img/check.png");*/
+/*}*/
 
 
 .contact-button {
@@ -202,8 +200,7 @@ margin-bottom: 6px;
 
 .fon_opisanie{
       padding-top: 3%;
-      padding-bottom: 3%;
-      background:#f7ffff;
+      background: #212529;
       background-position: top;
       background-repeat: no-repeat;
       background-size: cover;
@@ -214,19 +211,23 @@ text-align: center;
   font-family: 'Inter';
   font-style: bold;
   font-weight: 700;
+  margin-bottom: 0;
   font-size: 64px;
   line-height: 77px;
-
-  color: #000000;
+  background-color: #212529;
+  color: white;
 }
 
 .product-card {
-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+box-shadow: 0 2px 5px 0 transparent;
+background-color: white;
 transition: all .3s;
+border-color: #212529;
+border-radius: 25px;
 }
 
 .product-card:hover {
-box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+box-shadow: 0 14px 30px -15px rgb(255, 255, 255);
 }
 
 .product-thumb a {
@@ -279,5 +280,105 @@ font-weight: 600;
 font-size: 20px;
 margin-left: 10px;
 }
+
+
+
+.verh{
+background-image: url("http://194.67.116.171/img/otdyh.jpg");
+}
   
+  
+  
+  
+.koguvcavis-varazdel {
+  padding: 38px 0;
+  background: #e0e0e0;
+  color: #2f2f2f;
+  text-align: center;
+}
+.sestim-donials{
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.koguvcavis-varazdel h2{
+  text-align: center;
+  font-family: 'Inter';
+  font-style: bold;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 77px;
+  color: #000000;
+}
+
+.sagestim-lonials{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.vemotau-vokusipol{
+  flex: 33.33%;
+  max-width: 33.33%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+.testimonial {
+  background: white;
+  padding: 28px;
+  border-radius: 25px;
+}
+.testimonial img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.gecedanam{
+  font-size: 20px;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+.apogered-gselected{
+  color: #53b32b;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width:960px) {
+.vemotau-vokusipol{
+  flex: 100%;
+  max-width: 80%;
+}
+}
+
+@media screen and (max-width:600px) {
+.vemotau-vokusipol{
+  flex: 100%;
+  max-width: 100%;
+}
+}
+
+@media screen and (max-width:768px) {
+.cardFon{
+  display: none;
+}
+}
+
+@media screen and (min-width:536px) and (max-width:1120px) {
+.nazva_tiu{
+  position:absolute;
+  top:10px;
+  left:90px
+}
+}
+
+@media screen and (max-width:536px) {
+.nazva_tiu{
+  font-size: 30px;
+  position:absolute;
+  top:10px;
+  left:90px
+}
+}
+
 

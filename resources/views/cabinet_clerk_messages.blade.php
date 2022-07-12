@@ -1,22 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <title>Личный кабинет | Добавление в ЧС банка | Заявка № {{$id}} </title>
+    <title>Личный кабинет | Входящие сообщения</title>
     <meta charset='utf-8'/>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
     <link href="http://194.67.116.171/css/bootstrap.css" rel="stylesheet">
     <link rel="shortcut icon" href="http://194.67.116.171/img/tiunoff.png" type="image/png">
-    <link rel="stylesheet" href="http://194.67.116.171/css/loan_response_message.css"/>
-    <link rel="stylesheet" href="http://194.67.116.171/css/nav-style.css"/>
+    <link rel="stylesheet" href="http://194.67.116.171/css/cabinet_loan_officer.css">
+    <link rel="stylesheet" href="http://194.67.116.171/css/nav-style.css">
     <link rel="stylesheet" href="http://194.67.116.171/css/navbar_cabinet.css"/>
 </head>
 
 <body>
-
-
-<!-- - - - - - - - - - - - - - - - - - - N A V B A R - - - - - - - - - - - - - - - - - - - - - -->
-
-
+<!-- - - - - - - - - - - - - - - - -  N A V B A R - - - - - - - - - - - - - - - - - -  -  -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark pt-0">
     <div class="p-3 bg-dark container-fluid">
         <div class="col-3 col-md-4 navbar-brand text-light me-0">
@@ -54,58 +52,60 @@
         </div>
     </div>
 </nav>
+<!-- - - - - - - - - - - - - - - - -  N A V B A R - - - - - - - - - - - - - - - - - -  -  -->
 
-
-<!-- - - - - - - - - - - - - - - - - M A S S A G E - - - - - - - - - - - - - - - - - - - -->
-
-
-<div class = "container-fluid">
-    <div class="row justify-content-center text-center">
-        <div class="col-md-12 mt-4 mb-3 text-center title_lk">
-            <h1 class = "py-3">ЛИЧНЫЙ КАБИНЕТ</h1>
-        </div>
+<div class="container-fluid">
+    <div class="col-md-12 mt-4 mb-5 text-center title_lk">
+        <h1 class = "py-3">ЛИЧНЫЙ КАБИНЕТ</h1>
     </div>
-    <div class="col-md-12 mt-3 mb-5 text-center">
-        <h5 style="font-weight: bold"><a class="text-danger" href="http://194.67.116.171/cabinet">ЗАЯВКА №{{$id}}</a>/<a class="text-danger" href="#" onclick="history.go(-1);">ФОРМИРОВАНИЕ ОТВЕТА ПО КРЕДИТУ</a>/ОТВЕТ КЛИЕНТУ</h5>
+    <div class="col-md-12 mt-4 mb-5 text-center">
+        <h5 style="font-weight: bold"><a class="text-danger" href="http://194.67.116.171/cabinet">ЛИЧНЫЙ КАБИНЕТ</a>/ВХОДЯЩИЕ СООБЩЕНИЯ</h5>
     </div>
 
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-10 col-md-10 col-12">
-                <form name="form" id="messageForm">
-                    @csrf
-                    <div class="text-wrapper">
-                        <label class="pt-4 mb-2" for="text">Текст ответа</label>
-                        <textarea class="data form-control" id="text" name="text" rows="10" placeholder="Введите текст ответа"></textarea>
-                        <div class="error text text-end"></div>
-                    </div>
-                    <input type="button" class="btn btn-style w-100 my-3" id="messageFormButton" value="Отправить">
-                </form>
-            </div>
+    <div class="row justify-content-center">
+        <div class = "col-md-7 mb-5 pb-5">
+            @if(!empty($data))
+                <table class="table table-dark table-bordered table-hover mb-5 mt-5 text-center">
+                    <thead>
+                    <tr>
+                        <th class="col">ДАТА ОТПРАВКИ</th>
+                        <th class="col">ТЕМА СООБЩЕНИЯ</th>
+                        <th class="col">ОТПРАВИТЕЛЬ</th>
+                        <th class="col">ТЕКСТ СООБЩЕНИЯ</th>
+                        <th class="col">ДЕЙСТВИЕ ПО ЗАЯВКЕ</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($data as $item)
+                        <tr>
+                            <th class="col">{{$item->send_date}}</th>
+                            <th class="col">{{$item->msg_topic}}</th>
+                            <th class="col">{{$item->sender}}</th>
+                            <th class="col">{{$item->text}}</th>
+                            <th class="col">
+                                <div>
+                                    <a href="http://194.67.116.171/cabinet/messages/answer/{{$item->sender}}/{{$item->id_message}}" type="button" class="btn btn-info">
+                                        РАССМОТРЕТЬ
+                                    </a>
+                                </div>
+                            </th>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @else
+                <h1 class="text-center">
+                    На данный момент нет новых заявок.
+                </h1>
+            @endif
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title response-title" id="responseModalLabel"></h5>
-            </div>
-            <div class="modal-body response-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn modal-button w-100" style="background-color: yellow;">Понятно</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- - - - - - - - - - - - - - - - - - F  O  O  T  E  R - - - - - - - - - - - - - - - - - - - - -->
-
+<!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - -  -  -->
 <footer class="bg-dark text-center text-white fixed-bottom">
     <div class="container p-4">
+
         <section>
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
@@ -124,9 +124,10 @@
         © 2022. Tiunoff bank, официальный сайт.
     </div>
 </footer>
+<!-- - - - - - - - - - - - - - - - -  F  O  O  T  E  R - - - - - - - - - - - - - - - - - -  -  -->
+
 </body>
 <script src="http://194.67.116.171/js/jquery_v3.6.0.js"></script>
 <script src="http://194.67.116.171/js/bootstrap.js"></script>
-<script src="http://194.67.116.171/js/loan_officer/loan_response_message.js"></script>
 <script src="http://194.67.116.171/js/leave.js"></script>
 </html>

@@ -42,6 +42,10 @@ class LoanOfficerController extends Controller
             $rating = DB::table('Application')->where('id_app', $request->session()->get('id'))->value('rating');
             $age = DB::table('Additional_data')->where('ITN', $request->session()->get('ITN'))->value('age');
             $data = current(collect(DB::table('Application')->where('id_app', $request->session()->get('id'))->get())->all());
+            if(DB::table('Black_list')->where('ITN', $request->session()->get('ITN'))->exists()){
+                $rating = 1;
+                $flag = false;
+            }
             if ($data->sum >= 1000000 && ($age < 21 || $age > 50)){
                 $rating = 1;
                 $flag = false;
@@ -54,6 +58,10 @@ class LoanOfficerController extends Controller
                 $rating = 1;
                 $flag = false;
             }
+           if($data->guarantor_flag != 1 && $data->loan_type==3){
+               $rating = 1;
+               $flag = false;
+           }
             if ($rating != 1 || $flag) {
                 $rating = 1;
                 if ($data->fee < $data->fee_max) {
@@ -126,7 +134,8 @@ class LoanOfficerController extends Controller
                 'ITN' => ['required', 'integer', 'min:100000000000', 'max:999999999999'],
                 'sum' => ['required', 'integer', 'min:50000', 'max:15000000'],
                 'loan_type' => ['required', 'integer', 'min:1', 'max:'.$amount],
-                'term' => ['required', 'integer', 'min:12', 'max:180']
+                'term' => ['required', 'integer', 'min:12', 'max:180'],
+                'fee' => ['required', 'integer']
             ]);
         } else {
             return ['msg' => -1];
@@ -134,8 +143,12 @@ class LoanOfficerController extends Controller
 
         if($this->isLoanOfficer($request)){
             //$date = $this->getDateWithTerm($request->input('term'));
-            $db_code = DB::table('Active_loans')->insert(['ITN' => $request->input('ITN'), 'loan_sum' => $request->input('sum'), 'loan_type' => $request->input('loan_type'), 'term' => $request->input('term')]) && DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['valid' => 0]);;
-            return ['msg' => 1, 'db_code' => $db_code];
+            if($request->session()->get('ITN')==$request->input('ITN')) {
+                $contract = DB::table('Application')->where('id_app', $request->session()->get('id'))->value('contract');
+                $code1 = DB::table('Active_loans')->insert(['ITN' => $request->input('ITN'), 'loan_sum' => $request->input('sum'), 'loan_type' => $request->input('loan_type'), 'term' => $request->input('term'), 'loan_fee' => $request->input('fee'), 'contract' => $contract]);
+                $code2 = DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['valid' => 0]);
+                return ['msg' => 1, 'db_code' => $code1.$code2];
+            }
         }
         return ['msg' => -1, 'db_code' => -1];
     }
@@ -146,7 +159,10 @@ class LoanOfficerController extends Controller
                 'ITN' => ['required', 'numeric', 'min:100000000000', 'max:999999999999'],
                 'text' => ['required', 'regex:/^[0-9a-zA-Z-_а-яА-Я]+$/']
             ]);
-            $code = DB::insert('INSERT INTO Black_list (ITN) VALUES (?)', [$request->input('ITN')]) && DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['rating' => 0, 'valid' => 0, 'text' => $request->input('text')]);
+            $code = DB::insert('INSERT INTO Black_list (ITN) VALUES (?)', [$request->input('ITN')]) && DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['rating' => 0, 'valid' => 0]);
+//            $id_msg = DB::table('Application')->where('id_app', $request->session()->get('id'))->value('id_message');
+//            $code2 = DB::table('Messages')->where('id_message', $id_msg)->update(['text' => ])
+//            , 'text' => $request->input('text')
             return ['msg' => 1, 'code' => $code];
         }
         return ['msg' => -1, 'code' => -1];
@@ -182,20 +198,44 @@ class LoanOfficerController extends Controller
     function loanResponseMessage(Request $request){
         if($this->isLoanOfficer($request)){
             $request->validate([
-                'text' => ['required', 'regex:/^[0-9a-zA-Z-_а-яА-Я]+$/']
+                'text' => ['required', 'regex:/^[\s0-9a-zA-Z-_а-яА-Я!?,.():;]+$/u']
             ]);
             //$id_msg=DB::table('Messages_rec')->where('receiver', DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login'));
             //$code = DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['text' => $request->input('text')]);
             date_default_timezone_set('Europe/Moscow');
-            $code = DB::table('Messages')->where('id_message', $request->session()->get('id_msg'))->update(['text' => $request->input('text'), 'send_date' => date('Y-m-d')]);
+            $code1 = DB::table('Messages')->where('id_message', $request->session()->get('id_msg'))->update(['text' => $request->input('text'), 'send_date' => date('Y-m-d')]);
+            $login = DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login');
+            $code2 = DB::table('Messages_rec')->where('id_message', $request->session()->get('id_msg'))->update(['receiver' => $login, 'viewed' => 0, 'shown' => 1]);
+            $code3 = -1;
+            if(DB::table('Application')->where('id_app', $request->session()->get('id'))->value('rating')==3){
+                $code3 = DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['confirm' => null]);
+            } else {
+                $code3 = DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['valid' => 0]);
+            }
+
+//            if(DB::table('Application')->where('id_app', $request->session()->get('id'))->value('rating')>1){
+//                DB::table('Messages_rec')->where('id_message',  $request->session()->get('id_msg'))->update(['reciever'])
+//            }
             //$login = DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login');
 //            $code2=-1;
 //            if(DB::table('Messages_rec')->where('id_message', $request->session()->get('id_msg'))->doesntExist()) {
 //                $code2 = DB::table('Messages_rec')->insert(['id_message' => $request->session()->get('id_msg'), 'receiver' => $login])
 //            }
-            return ['msg' => 1 , 'code'=>$code];
+            return ['msg' => 1 , 'code'=>$code1.$code2.$code3];
         }
         return ['msg' => -1, 'code' => -1];
+    }
+
+    function loanResponseContractRefuse(Request $request){
+        if($this->isLoanOfficer($request)){
+            DB::table('Application')->where('id_app', $request->session()->get('id'))->update(['valid' => 0]);
+            $text = "Ваша заявка была закрыта! Вы отправили некорретные данные сотрунику банка!";
+            $id_msg = DB::table('Application')->where('id_app', $request->session()->get('id'))->value('id_message');
+            DB::table('Messages')->where('id_message', $id_msg)->update(['text' => $text]);
+            DB::table('Messages_rec')->where('id_message', $id_msg)->update(['receiver' => DB::table('Auth_data')->where('ITN', $request->session()->get('ITN'))->value('login'), 'viewed' => 0, 'shown' => 1]);
+            return redirect()->route('cabinet_route');
+        }
+        return redirect()->route('main_route');
     }
 
 
